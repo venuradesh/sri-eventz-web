@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import SearchIcon from "@material-ui/icons/Search";
 
 function SearchBar() {
   return (
@@ -8,13 +9,11 @@ function SearchBar() {
         <span>Find all the Services for your Event with us</span>
         <div className="search-bar-wrapper">
           <input type="text" placeholder="Search Service..." />
-          <button>Filter Search</button>
+          <SearchIcon className="search-icon" />
+          <button className="search">Search</button>
+          <button className="filter-search">Filter</button>
         </div>
       </Container>
-      <div className="description">
-        <h3>Sri EventZ</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, expedita adipisci. Omnis debitis, deleniti voluptate asperiores vero labore, beatae molestias quos quam quidem a suscipit accusamus sint? Blanditiis, culpa sed!</p>
-      </div>
     </>
   );
 }
@@ -27,7 +26,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 40%;
+  top: 35%;
   left: 50%;
   transform: translateX(-50%);
 
@@ -38,6 +37,7 @@ const Container = styled.div`
     font-size: 2rem;
     text-align: center;
     font-weight: 600;
+    width: 500px;
   }
 
   .search-bar-wrapper {
@@ -48,43 +48,122 @@ const Container = styled.div`
     position: relative;
 
     input {
-      width: 100%;
       background-color: #64495c;
       color: #ffffff;
       padding: 20px 20px;
-      padding-right: 140px;
+      padding-right: 130px;
       border: none;
       border-radius: 4px;
       outline: none;
       font-size: 1rem;
+      z-index: 1;
 
       &:focus {
         box-shadow: 0 0 10px 0px #412542;
       }
 
       &::placeholder {
-        color: rgb(226, 220, 224);
+        color: #917589;
         font-size: 1rem;
         letter-spacing: 1px;
         text-transform: uppercase;
       }
     }
 
-    button {
+    .search-icon {
       position: absolute;
-      right: 10px;
+      color: #ffffff;
+      font-size: 2.3rem;
+      right: 90px;
       top: 50%;
       transform: translateY(-50%);
-      padding: 10px 10px;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    button {
+      padding: 15px 15px;
+      font-size: 0.9rem;
       background-color: #412542;
       border: none;
       border-radius: 4px;
       color: #ffffff;
-      font-size: 1rem;
       cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      box-shadow: 0 0px 7px 0px rgba(0, 0, 0, 0.75);
+
+      &:hover {
+        background-color: rgb(78, 54, 79);
+      }
+    }
+
+    .filter-search {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .search {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 80px;
+      width: 250px;
+      letter-spacing: 1.2px;
     }
   }
 
   @media only screen and (min-width: 940px) {
+    span {
+      width: 500px;
+    }
+
+    .search-bar-wrapper {
+      width: 500px;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .search-bar-wrapper {
+      width: 300px;
+
+      .search-icon {
+        font-size: 2rem;
+        right: 20px;
+      }
+
+      input {
+        padding-right: 55px;
+
+        &::placeholder {
+          text-align: center;
+        }
+      }
+
+      .search,
+      .filter-search {
+        position: absolute;
+        top: 100px;
+        width: 130px;
+      }
+
+      .search {
+        position: absolute;
+        top: 76px;
+        left: 70px;
+      }
+
+      .filter-search {
+        top: 100px;
+      }
+    }
+
+    span {
+      font-size: 1rem;
+      width: 300px;
+    }
   }
 `;

@@ -122,6 +122,7 @@ const Navigation = styled.div`
       height: 200px;
       width: 150px;
       overflow: hidden;
+      z-index: 100;
 
       ul {
         width: 100%;
@@ -210,6 +211,7 @@ const HamMenu = styled.div`
     background-color: #64495c;
     border: 3px solid transparent;
     transition: all 0.3s ease;
+    z-index: 100;
   }
 
   &:hover {
