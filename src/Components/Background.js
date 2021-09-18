@@ -14,7 +14,7 @@ export default Background;
 const Container = styled.div`
   height: 80vh;
   width: 100vw;
-  position: absolute;
+  position: fixed;
   z-index: -1;
 
   .background-image {

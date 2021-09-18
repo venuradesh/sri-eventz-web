@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./Components/Header";
 import SearchBar from "./Components/SearchBar";
 import Background from "./Components/Background";
-import Events from "./Components/Events";
+import Feed from "./Components/Feed";
 
 function App() {
   return (
@@ -17,9 +17,7 @@ function App() {
               <Header />
               <SearchBar />
             </div>
-            <div className="select-events">
-              <Events />
-            </div>
+            <Feed />
           </Route>
         </Switch>
       </div>

@@ -51,9 +51,9 @@ const Container = styled.div`
       background-color: #64495c;
       color: #ffffff;
       padding: 20px 20px;
-      padding-right: 130px;
+      padding-right: 160px;
       border: none;
-      border-radius: 4px;
+      border-radius: 100px;
       outline: none;
       font-size: 1rem;
       z-index: 1;
@@ -74,7 +74,7 @@ const Container = styled.div`
       position: absolute;
       color: #ffffff;
       font-size: 2.3rem;
-      right: 90px;
+      right: 120px;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
@@ -82,11 +82,11 @@ const Container = styled.div`
     }
 
     button {
-      padding: 15px 15px;
+      padding: 15px 30px;
       font-size: 0.9rem;
       background-color: #412542;
       border: none;
-      border-radius: 4px;
+      border-radius: 100px;
       color: #ffffff;
       cursor: pointer;
       text-transform: uppercase;
