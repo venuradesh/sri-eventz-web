@@ -52,13 +52,16 @@ const Container = styled.div`
   }
 
   @media only screen and (min-width: 1431px) {
-    width: 350px;
-    padding: 20px 15px;
+    width: 400px;
+    height: 600px;
+    padding: 40px 25px;
   }
 
   @media only screen and (max-width: 1430px) {
     width: 300px;
-    padding: 20px 15px;
+    height: 520px;
+    padding: 25px 15px;
+    padding-bottom: 50px;
     padding-bottom: 25px;
 
     span {
@@ -70,19 +73,21 @@ const Container = styled.div`
     }
   }
 
-  @media only screen and (max-width: 1200px) {
-    padding: 20px;
-
-    span {
-      font-size: 0.8rem;
-    }
-  }
-
   @media only screen and (max-width: 1280px) {
     margin-bottom: 30px;
     width: 100%;
     min-width: 600px;
     height: 320px;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    width: 500px;
+    padding: 20px;
+    padding-bottom: 50px;
+
+    span {
+      font-size: 0.8rem;
+    }
   }
 
   @media only screen and (max-width: 620px) {
