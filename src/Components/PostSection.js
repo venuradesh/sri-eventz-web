@@ -9,7 +9,7 @@ function PostSection() {
   return (
     <Container>
       {PostContent.map((post) => (
-        <Post images={post.images} desc={post.desc} user={post.user} />
+        <Post images={post.images} desc={post.desc} user={post.user} time={post.dateTime} loc={post.location} />
       ))}
     </Container>
   );
