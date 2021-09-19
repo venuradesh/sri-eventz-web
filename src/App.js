@@ -5,6 +5,7 @@ import Header from "./Components/Header";
 import SearchBar from "./Components/SearchBar";
 import Background from "./Components/Background";
 import Feed from "./Components/Feed";
+import ProfileContainer from "./Components/Profile/ProfileContainer";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
               <SearchBar />
             </div>
             <Feed />
+          </Route>
+          <Route exact path="/profile">
+            <ProfileContainer />
           </Route>
         </Switch>
       </div>
