@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -122,6 +122,7 @@ const Navigation = styled.div`
       height: 200px;
       width: 150px;
       overflow: hidden;
+      z-index: 100;
 
       ul {
         width: 100%;
@@ -154,17 +155,18 @@ const BtnContainer = styled.div`
   justify-content: space-between;
 
   a {
-    padding: 1rem 2rem;
+    padding: 0.8rem 2rem;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 0.8rem;
+    border-radius: 100px;
     font-weight: 600;
     box-shadow: 0 0 7px -3px #ffffff;
   }
 
   a:first-of-type {
     border: 3px solid #64495c;
-    border-radius: 12px;
+    // border-radius: 12px;
     background-color: tranparent;
     color: #ffffff;
     transition: all 0.3s ease;
@@ -179,7 +181,7 @@ const BtnContainer = styled.div`
     color: #ffffff;
     background-color: #64495c;
     border: 3px solid transparent;
-    border-radius: 12px;
+    // border-radius: 12px;
     transition: all 0.3s ease;
 
     &:hover {
@@ -210,6 +212,7 @@ const HamMenu = styled.div`
     background-color: #64495c;
     border: 3px solid transparent;
     transition: all 0.3s ease;
+    z-index: 100;
   }
 
   &:hover {
