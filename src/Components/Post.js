@@ -33,7 +33,17 @@ function Post(props) {
           ))}
         </Carousel>
       </PhotoWrapper>
-      <InfoWrapper></InfoWrapper>
+      <InfoWrapper>
+        <div className="profile">
+          <div className="profile-photo">
+            <img src={props.user.profileImage} />
+          </div>
+          <div className="user-name">{props.user.name}</div>
+          <div className="title">{props.user.title}</div>
+          <div className="level">{props.user.level}</div>
+        </div>
+        <div className="description">{props.desc}</div>
+      </InfoWrapper>
     </Container>
   );
 }
@@ -47,6 +57,7 @@ const Container = styled.div`
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 5px 7px -2px rgba(0, 0, 0, 0.75);
+  display: flex;
 
   @media only screen and (min-width: 1900px) {
     width: 900px;
@@ -121,7 +132,21 @@ const PhotoWrapper = styled.div`
   }
 `;
 
-const InfoWrapper = styled.div``;
+const InfoWrapper = styled.div`
+  .profile {
+    .profile-photo {
+      width: 50px;
+      height: 50px;
+      img {
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+        obejct-fit: cover;
+      }
+    }
+  }
+`;
 
 const Carousel = styled(Slider)`
   width: 450px;
