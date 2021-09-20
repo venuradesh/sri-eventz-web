@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setEvent, unsetEvent } from "../features/ActiveEvent/EventSlice";
 
 const Event = (props) => {

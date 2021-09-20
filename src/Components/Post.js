@@ -21,10 +21,6 @@ function Post(props) {
     adaptiveHeight: true,
   };
 
-  props.images.map((img) => {
-    console.log(img);
-  });
-
   return (
     <Container>
       <PhotoWrapper>

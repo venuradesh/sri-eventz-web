@@ -43,6 +43,8 @@ const Container = styled.div`
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 7px 9px -3px rgba(0, 0, 0, 0.75);
+  position: sticky;
+  top: 120px;
 
   h1 {
     color: #ffffff;
@@ -78,6 +80,8 @@ const Container = styled.div`
     width: 100%;
     min-width: 600px;
     height: 320px;
+    position: relative;
+    top: 0;
   }
 
   @media only screen and (max-width: 1200px) {
