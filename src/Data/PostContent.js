@@ -9,6 +9,8 @@ const PostContent = [
       level: "Diamond",
       profileURL: "#",
     },
+    dateTime: "3 min ago",
+    location: "colombo Sri Lanka",
   },
   {
     images: ["/images/post-image-1.jpg", "/images/post-image-2.jpg", "/images/post-image-3.jpg", "/images/post-image-4.jpg", "/images/post-image-5.jpg"],
@@ -20,6 +22,8 @@ const PostContent = [
       level: "Diamond",
       profileURL: "#",
     },
+    dateTime: "5 min ago",
+    location: "Kandy Sri Lanka",
   },
 ];
 
