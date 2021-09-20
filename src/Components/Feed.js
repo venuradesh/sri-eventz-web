@@ -6,7 +6,7 @@ import PostSection from "./PostSection";
 function Feed() {
   return (
     <div className="feed-section">
-      <Navigation />
+      <Navigation className="nav" />
       <PostSection />
       <EventsSideBar />
     </div>

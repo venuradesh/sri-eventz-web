@@ -4,8 +4,6 @@ import Post from "./Post";
 import PostContent from "../Data/PostContent";
 
 function PostSection() {
-  console.log(PostContent);
-
   return (
     <Container>
       {PostContent.map((post) => (

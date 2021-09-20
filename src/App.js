@@ -6,6 +6,7 @@ import SearchBar from "./Components/SearchBar";
 import Background from "./Components/Background";
 import Feed from "./Components/Feed";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <SearchBar />
             </div>
             <Feed />
+            <Footer />
           </Route>
           <Route exact path="/profile">
             <ProfileContainer />
