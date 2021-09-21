@@ -1,10 +1,14 @@
 import React from "react";
-import "./styles/app.css";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./Components/Header";
 import SearchBar from "./Components/SearchBar";
 import Background from "./Components/Background";
 import Feed from "./Components/Feed";
+
+import ProfileContainer from "./Components/Profile/ProfileContainer";
+import AboutSection from "./Components/Profile/AboutSection";
+
 
 function App() {
   return (
@@ -19,6 +23,16 @@ function App() {
             </div>
             <Feed />
           </Route>
+          <Route exact path="/profile">
+            <div className="profile">
+             
+              <ProfileContainer/>
+              <AboutSection/>
+              
+            </div>
+           
+          </Route>
+         
         </Switch>
       </div>
     </Router>
