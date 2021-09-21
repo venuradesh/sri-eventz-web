@@ -1,11 +1,17 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
+import gsap from "gsap";
 
 const Header = () => {
   const nav_menu = useRef();
   const btn_con = useRef();
+  const headerContainer = useRef(null);
+
+  useEffect(() => {
+    gsap.fromTo(headerContainer.current, { opacity: 0, y: "-100px" }, { opacity: 1.3, duration: 1, delay: 0.7, y: 0 });
+  }, []);
 
   const insideHamberger = () => {
     nav_menu.current.classList.toggle("active");
@@ -13,7 +19,7 @@ const Header = () => {
   };
 
   return (
-    <Container>
+    <Container ref={headerContainer}>
       <Link to="/">
         <Logo></Logo>
       </Link>

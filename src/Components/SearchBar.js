@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import SearchIcon from "@material-ui/icons/Search";
+import gsap from "gsap";
 
 function SearchBar() {
+  const spanFade = useRef();
+  const searchBar = useRef();
+
+  useEffect(() => {
+    gsap.fromTo(spanFade.current, { opacity: 0, y: "-100px" }, { opacity: 1, y: 0, duration: 1.2, delay: 1.7 });
+    gsap.fromTo(searchBar.current, { opacity: 0, y: "100px" }, { opacity: 1, duration: 1, y: "0px", delay: 2.4 });
+  }, []);
+
   return (
     <>
       <Container>
-        <span>Find all the Services for your Event with us</span>
-        <div className="search-bar-wrapper">
+        <span className="fade" ref={spanFade}>
+          Find all the Services for your Event with us
+        </span>
+        <div className="search-bar-wrapper fade" ref={searchBar}>
           <input type="text" placeholder="Search Service..." />
           <SearchIcon className="search-icon" />
           <button className="search">Search</button>

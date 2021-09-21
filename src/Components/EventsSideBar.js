@@ -4,7 +4,7 @@ import Event from "./Event";
 import { useSelector } from "react-redux";
 import { selectEvent } from "../features/ActiveEvent/EventSlice";
 
-function EventsSideBar() {
+function EventsSideBar(props) {
   const selectedEvent = useSelector(selectEvent);
 
   const eventHolder = [
@@ -17,7 +17,7 @@ function EventsSideBar() {
   ];
 
   return (
-    <Container>
+    <Container ref={props.reference}>
       <h1>Your Event</h1>
       <Wrapper>
         {eventHolder.map((event) => (
@@ -54,7 +54,7 @@ const Container = styled.div`
   }
 
   @media only screen and (min-width: 1431px) {
-    width: 400px;
+    width: 300px;
     height: 600px;
     padding: 40px 25px;
   }
