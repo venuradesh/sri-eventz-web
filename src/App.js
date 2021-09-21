@@ -7,6 +7,7 @@ import Background from "./Components/Background";
 import Feed from "./Components/Feed";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
 import Footer from "./Components/Footer";
+import Login from "./Components/Login/Login";
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route exact path="/profile">
             <ProfileContainer />
+          </Route>
+          <Route exact path="/login">
+            <Login />
           </Route>
         </Switch>
       </div>
