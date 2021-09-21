@@ -23,7 +23,7 @@ export default function AboutSection() {
                 accusantium ipsum, esse unde vel fugit quas. Assumenda impedit
                 laboriosam, enim, voluptatem eveniet esse excepturi sequi
                 laudantium perspiciatis mollitia illum modi! Quod odit nobis
-                magni autem obcaecati sit amet, voluptas pariatur adipisci at!
+                magni autem obcaecati sit amet, voluptas pariatur adipisci at
               </div>
             </div>
             <div className="skill">
