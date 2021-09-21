@@ -22,7 +22,7 @@ function Post(props) {
   };
 
   return (
-    <Container>
+    <Container className="fade">
       <PhotoWrapper>
         <Carousel {...settings}>
           {props.images.map((imgsrc) => (
