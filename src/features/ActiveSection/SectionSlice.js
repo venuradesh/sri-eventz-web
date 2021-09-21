@@ -9,7 +9,11 @@ const SectionSlice = createSlice({
   initialState,
   reducers: {
     setSection: (state, action) => {
-      state.activeSection = action.payload.active;
+      if (action.payload.active === "search") {
+        state.activeSection = "timeline";
+      } else {
+        state.activeSection = action.payload.active;
+      }
     },
 
     unsetSection: (state) => {

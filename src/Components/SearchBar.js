@@ -14,7 +14,7 @@ function SearchBar() {
 
   return (
     <>
-      <Container>
+      <Container id="search">
         <span className="fade" ref={spanFade}>
           Find all the Services for your Event with us
         </span>

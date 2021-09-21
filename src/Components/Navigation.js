@@ -6,13 +6,13 @@ import { selectSection } from "../features/ActiveSection/SectionSlice";
 
 function Navigation() {
   let SectionContent = [
-    { className: "timeline tile ", content: "timeline", icon: "/images/news-feed.svg" },
-    { className: "search tile ", content: "search", icon: "/images/seo.svg" },
-    { className: "guide tile ", content: "guide", icon: "/images/guide.svg" },
-    { className: "planner tile ", content: "event planner", icon: "/images/wedding-planner.svg" },
-    { className: "fav tile ", content: "favourites", icon: "/images/favourite.svg" },
-    { className: "history tile ", content: "history", icon: "/images/history.svg" },
-    { className: "settings tile ", content: "settings", icon: "/images/settings.svg" },
+    { className: "timeline tile ", content: "timeline", icon: "/images/news-feed.svg", href: "#timeline" },
+    { className: "search tile ", content: "search", icon: "/images/seo.svg", href: "#search" },
+    { className: "guide tile ", content: "guide", icon: "/images/guide.svg", href: "/guide" },
+    { className: "planner tile ", content: "event planner", icon: "/images/wedding-planner.svg", href: "/planner" },
+    { className: "fav tile ", content: "favourites", icon: "/images/favourite.svg", href: "/fav" },
+    { className: "history tile ", content: "history", icon: "/images/history.svg", href: "/history" },
+    { className: "settings tile ", content: "settings", icon: "/images/settings.svg", href: "/settings" },
   ];
 
   const activeSection = useSelector(selectSection);
@@ -26,7 +26,7 @@ function Navigation() {
   return (
     <Container>
       {SectionContent.map((section) => (
-        <Section classList={section.className} content={section.content} icon={section.icon} />
+        <Section classList={section.className} href={section.href} content={section.content} icon={section.icon} />
       ))}
     </Container>
   );
