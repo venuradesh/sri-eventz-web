@@ -8,6 +8,7 @@ import Feed from "./Components/Feed";
 import Footer from "./Components/Footer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
 import AboutSection from "./Components/Profile/AboutSection";
+import Login from "./Components/Login/Login";
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
               <AboutSection />
             </div>
           </Route>
+          <Router exact path="/login">
+            <Login />
+          </Router>
         </Switch>
       </div>
     </Router>
