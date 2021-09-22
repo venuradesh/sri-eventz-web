@@ -5,8 +5,9 @@ import Header from "./Components/Header";
 import SearchBar from "./Components/SearchBar";
 import Background from "./Components/Background";
 import Feed from "./Components/Feed";
-import ProfileContainer from "./Components/Profile/ProfileContainer";
 import Footer from "./Components/Footer";
+import ProfileContainer from "./Components/Profile/ProfileContainer";
+import AboutSection from "./Components/Profile/AboutSection";
 import Login from "./Components/Login/Login";
 
 function App() {
@@ -24,11 +25,14 @@ function App() {
             <Footer />
           </Route>
           <Route exact path="/profile">
-            <ProfileContainer />
+            <div className="profile">
+              <ProfileContainer />
+              <AboutSection />
+            </div>
           </Route>
-          <Route exact path="/login">
+          <Router exact path="/login">
             <Login />
-          </Route>
+          </Router>
         </Switch>
       </div>
     </Router>
