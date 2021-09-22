@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -7,6 +7,8 @@ import gsap from "gsap";
 const Header = () => {
   const nav_menu = useRef();
   const btn_con = useRef();
+  const ul = useRef();
+  const [loginInserted, setLoginInserted] = useState(false);
   const headerContainer = useRef(null);
 
   useEffect(() => {
@@ -14,8 +16,20 @@ const Header = () => {
   }, []);
 
   const insideHamberger = () => {
+    document.getElementById("search").classList.toggle("active");
     nav_menu.current.classList.toggle("active");
     btn_con.current.classList.toggle("active");
+    if (nav_menu.current.classList.contains("active")) {
+      if (!loginInserted) {
+        setLoginInserted(true);
+        let html = `
+          <li><a href="/login">Login</a></li>
+          <li><a href="/register">SignUp</a></li>
+        `;
+
+        ul.current.insertAdjacentHTML("beforeend", html);
+      }
+    }
   };
 
   return (
@@ -24,7 +38,7 @@ const Header = () => {
         <Logo></Logo>
       </Link>
       <Navigation ref={nav_menu}>
-        <ul>
+        <ul ref={ul}>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -125,10 +139,9 @@ const Navigation = styled.div`
       top: 80px;
       background-color: #64495c;
       border-radius: 4px;
-      height: 200px;
+      height: 250px;
       width: 150px;
       overflow: hidden;
-      z-index: 100;
 
       ul {
         width: 100%;

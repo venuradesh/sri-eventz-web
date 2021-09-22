@@ -15,7 +15,7 @@ const Container = styled.div`
   height: 80vh;
   width: 100vw;
   position: fixed;
-  z-index: -1;
+  z-index: -100;
 
   .background-image {
     width: 100%;

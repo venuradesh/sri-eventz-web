@@ -41,6 +41,10 @@ const Container = styled.div`
   left: 50%;
   transform: translateX(-50%);
 
+  &.active {
+    z-index: -1;
+  }
+
   span {
     color: #ffffff;
     text-transform: uppercase;
