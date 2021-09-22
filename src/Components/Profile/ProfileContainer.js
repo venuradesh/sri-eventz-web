@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import Background from "./Background";
-import Description from "./Description";
-import Header from "./Header";
+import Nav from "./Nav";
+import Screen from "./Screen";
+import Content from "./Content";
 
 const ProfileContainer = () => {
   return (
     <Container>
-      <Background />
-      <Header />
-      <Description />
+      <Screen />
+      <Nav />
+      <Content />
     </Container>
   );
 };
