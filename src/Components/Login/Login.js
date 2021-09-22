@@ -45,7 +45,7 @@ const Login = () => {
               <div className="sign-in-google">Sign in with Google</div>
             </div>
             <div className="sign-up">
-              <span>Don't Have an Account? </span>
+              <span>don't have an account? </span>
               <Link to="/register"> SignUp</Link>
             </div>
           </LoginWrapper>
