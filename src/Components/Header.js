@@ -3,16 +3,38 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import gsap from "gsap";
+import { useDispatch } from "react-redux";
+import { auth } from "../firebase";
+import { setUser, unsetUser } from "../features/UserSlice.js/userSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
   const nav_menu = useRef();
   const btn_con = useRef();
   const ul = useRef();
+  const profileUl = useRef();
+  const profileContainer = useRef();
   const [loginInserted, setLoginInserted] = useState(false);
+  const [userName, setUserName] = useState();
+  const [userPhoto, setUserPhoto] = useState();
   const headerContainer = useRef(null);
 
   useEffect(() => {
     gsap.fromTo(headerContainer.current, { opacity: 0, y: "-100px" }, { opacity: 1.3, duration: 1, delay: 0.7, y: 0 });
+
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        dispatch(
+          setUser({
+            name: user.displayName,
+            email: user.email,
+            profilePhoto: user.photoURL,
+          })
+        );
+        setUserName(user.displayName);
+        setUserPhoto(user.photoURL);
+      }
+    });
   }, []);
 
   const insideHamberger = () => {
@@ -30,6 +52,18 @@ const Header = () => {
         ul.current.insertAdjacentHTML("beforeend", html);
       }
     }
+  };
+
+  const onProfileImageClick = () => {
+    profileUl.current.classList.toggle("active");
+    profileContainer.current.classList.toggle("active");
+  };
+
+  const SignOut = () => {
+    auth.signOut().then(() => {
+      dispatch(unsetUser());
+      window.location.reload();
+    });
   };
 
   return (
@@ -56,10 +90,33 @@ const Header = () => {
       <HamMenu>
         <MenuIcon className="hamburger-menu" onClick={insideHamberger} />
       </HamMenu>
-      <BtnContainer ref={btn_con}>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">SignUp</Link>
-      </BtnContainer>
+      {userName ? (
+        <ProfileContainer ref={profileContainer}>
+          <div className="profile">
+            <div className="name">{userName}</div>
+            <img src={userPhoto} onClick={onProfileImageClick} />
+          </div>
+          <UnorderedList ref={profileUl}>
+            <li>
+              <Link to="/settings">
+                Settings
+                <img src="/images/settings-white.svg" />
+              </Link>
+            </li>
+            <li>
+              <Link to="/" onClick={SignOut}>
+                Logout
+                <img src="/images/logout.svg" />
+              </Link>
+            </li>
+          </UnorderedList>
+        </ProfileContainer>
+      ) : (
+        <BtnContainer ref={btn_con}>
+          <Link to="/login">Login</Link>
+          <Link to="/signup">SignUp</Link>
+        </BtnContainer>
+      )}
     </Container>
   );
 };
@@ -243,5 +300,85 @@ const HamMenu = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+`;
+
+const ProfileContainer = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .profile {
+    display: flex;
+    align-items: center;
+
+    .name {
+      color: #ffffff;
+      margin-right: 10px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      cursor: default;
+    }
+
+    img {
+      width: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: 0 0px 7px 2px rgba(255, 255, 255, 0.4);
+      }
+    }
+  }
+
+  &.active {
+    flex-direction: column;
+  }
+`;
+
+const UnorderedList = styled.ul`
+  display: none;
+
+  &.active {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    position: absolute;
+    background-color: #64495c;
+    width: 200px;
+    right: 0;
+    top: 50px;
+    overflow: hidden;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    li {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      transition: all 0.3s ease;
+
+      a {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 20px;
+        cursor: pointer;
+        text-decoration: none;
+        color: #ffffff;
+
+        img {
+          width: 20px;
+        }
+      }
+
+      &:hover {
+        background-color: #412542;
+      }
+    }
   }
 `;

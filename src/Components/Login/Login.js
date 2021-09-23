@@ -1,13 +1,30 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import gsap from "gsap";
-import { useHistory } from "react-router-dom";
+import { googleProvider, auth } from "../../firebase";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../features/UserSlice.js/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const wrapper = useRef();
   const login = useRef();
   const history = useHistory();
+
+  const onGoogleAuth = () => {
+    auth.signInWithPopup(googleProvider).then((result) => {
+      dispatch(
+        setUser({
+          name: result.user.displayName,
+          email: result.user.email,
+          profilePhoto: result.user.photoURL,
+        })
+      );
+      history.push("/");
+      window.location.reload();
+    });
+  };
 
   useEffect(() => {
     gsap.fromTo(wrapper.current, { opacity: 0, y: "120px" }, { opacity: 1, y: "0", duration: 1 });
@@ -49,7 +66,7 @@ const Login = () => {
               <div className="or-sign-in-with">OR</div>
               <div className="line"></div>
             </div>
-            <div className="google">
+            <div className="google" onClick={onGoogleAuth}>
               <img src="/images/google.svg" />
               <div className="sign-in-google">Sign in with Google</div>
             </div>
