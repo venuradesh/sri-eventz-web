@@ -1,19 +1,45 @@
-import React, { useMemo, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import gsap from "gsap";
+import { googleProvider, auth } from "../../firebase";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../features/UserSlice.js/userSlice";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const wrapper = useRef();
   const login = useRef();
+  const history = useHistory();
+
+  const onGoogleAuth = () => {
+    auth.signInWithPopup(googleProvider).then((result) => {
+      dispatch(
+        setUser({
+          name: result.user.displayName,
+          email: result.user.email,
+          profilePhoto: result.user.photoURL,
+        })
+      );
+      history.push("/");
+      window.location.reload();
+    });
+  };
 
   useEffect(() => {
     gsap.fromTo(wrapper.current, { opacity: 0, y: "120px" }, { opacity: 1, y: "0", duration: 1 });
     gsap.fromTo(login.current, { opacity: 0, y: "100px" }, { opacity: 1, y: "0px", duration: 1, delay: 1 });
   }, []);
 
+  const onBackClick = () => {
+    history.goBack();
+  };
+
   return (
     <Container>
+      <div className="back-button" onClick={onBackClick}>
+        <img src="/images/back.svg" />
+      </div>
       <Wrapper ref={wrapper}>
         <LoginSection>
           <LoginWrapper ref={login}>
@@ -40,7 +66,7 @@ const Login = () => {
               <div className="or-sign-in-with">OR</div>
               <div className="line"></div>
             </div>
-            <div className="google">
+            <div className="google" onClick={onGoogleAuth}>
               <img src="/images/google.svg" />
               <div className="sign-in-google">Sign in with Google</div>
             </div>
@@ -52,6 +78,7 @@ const Login = () => {
         </LoginSection>
         <PhotoWrapper>
           <img src="/images/logo-white.png" />
+          <span>A product of Team Xposion</span>
         </PhotoWrapper>
       </Wrapper>
     </Container>
@@ -68,6 +95,43 @@ const Container = styled.div`
   justify-content: center;
   background-image: linear-gradient(to bottom right, #141518, #412542, #141518);
   background-repeat: no-repeat;
+  position: relative;
+
+  .back-button {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #64495c;
+      box-shadow: 0 5px 7px -2px rgba(0, 0, 0, 0.8);
+    }
+
+    img {
+      transform: translateX(-2px);
+      width: 20px;
+    }
+  }
+
+  @media only screen and (max-width: 550px) {
+    .back-button {
+      padding: 0;
+      top: 10px;
+      left: 10px;
+
+      img {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
 `;
 
 const Wrapper = styled.div`
@@ -145,7 +209,7 @@ const LoginWrapper = styled.div`
     input {
       width: 100%;
       border-radius: 100px;
-      padding: 10px 10px;
+      padding: 10px 20px;
       outline: none;
       border: none;
       background-color: #f2f2f2;
@@ -377,6 +441,14 @@ const PhotoWrapper = styled.div`
     left: 50%;
     transform: translateX(-50%);
     top: 20px;
+  }
+
+  span {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.7rem;
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
   }
 
   @media only screen and (max-width: 740px) {
