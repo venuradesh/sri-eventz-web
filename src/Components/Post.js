@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import moment from "moment";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -44,7 +45,7 @@ function Post(props) {
               <div className="user-name">{props.user.name}</div>
               <div className="title">{props.user.title}</div>
               <div className="level">
-                {props.user.level} <span>member</span>
+                {props.user.level.name} <span>member</span>
               </div>
             </div>
           </div>
@@ -70,7 +71,7 @@ function Post(props) {
           <LocTime>
             <div className="dateTime">
               <AccessTimeOutlinedIcon className="clock" />
-              <p>{props.time}</p>
+              <p>{moment(props.time.toDate().toString()).fromNow()}</p>
             </div>
             <div className="location">
               <LocationOnOutlinedIcon className="loc-icon" />
