@@ -40,16 +40,47 @@ const Header = () => {
   const insideHamberger = () => {
     document.getElementById("search").classList.toggle("active");
     nav_menu.current.classList.toggle("active");
-    btn_con.current.classList.toggle("active");
-    if (nav_menu.current.classList.contains("active")) {
-      if (!loginInserted) {
-        setLoginInserted(true);
-        let html = `
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">SignUp</a></li>
-        `;
+    const li = document.createElement("li");
+    const li2 = document.createElement("li");
+    const a = document.createElement("a");
+    const a2 = document.createElement("a");
+    li.setAttribute("id", "login-section");
+    li2.setAttribute("id", "signup-section");
 
-        ul.current.insertAdjacentHTML("beforeend", html);
+    if (!userName) {
+      btn_con.current.classList.toggle("active");
+    }
+    if (nav_menu.current.classList.contains("active")) {
+      if (!loginInserted && !userName) {
+        setLoginInserted(true);
+        a.textContent = "Login";
+        a.href = "/login";
+        a2.textContent = "SignUp";
+        a2.href = "/register";
+      } else if (loginInserted && userName) {
+        setLoginInserted(true);
+        li2.addEventListener("click", SignOut);
+        a.textContent = "Settings";
+        a.href = "/settings";
+        a2.textContent = "Logout";
+        a2.href = "/";
+      } else if (!loginInserted && userName) {
+        setLoginInserted(true);
+        li2.addEventListener("click", SignOut);
+        a.textContent = "Settings";
+        a.href = "/settings";
+        a2.textContent = "Logout";
+        a2.href = "/";
+      }
+      li.appendChild(a);
+      li2.appendChild(a2);
+      ul.current.appendChild(li);
+      ul.current.appendChild(li2);
+    } else {
+      if (loginInserted) {
+        setLoginInserted(false);
+        document.getElementById("login-section").remove();
+        document.getElementById("signup-section").remove();
       }
     }
   };
@@ -60,8 +91,11 @@ const Header = () => {
   };
 
   const SignOut = () => {
+    console.log("within");
+    console.log(userName);
     auth.signOut().then(() => {
       dispatch(unsetUser());
+      setLoginInserted(false);
       window.location.reload();
     });
   };
@@ -331,6 +365,10 @@ const ProfileContainer = styled.div`
         box-shadow: 0 0px 7px 2px rgba(255, 255, 255, 0.4);
       }
     }
+  }
+
+  @media only screen and (max-width: 800px) {
+    display: none;
   }
 
   &.active {
