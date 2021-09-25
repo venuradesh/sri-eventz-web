@@ -1,14 +1,17 @@
 import React, { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import SearchIcon from "@material-ui/icons/Search";
 import gsap from "gsap";
 import FilterBox from "./FilterBox";
 import { animateScroll as scroll } from "react-scroll";
 import { unsetLevel, unsetStarRating } from "../features/FilterSlice/FilterSlice";
+import { setKeyword, unsetKeyword } from "../features/SearchSlice/SearchSlice";
+import SearchKeyword from "../Data/SearchKeywords";
 
 function SearchBar() {
   const dispatch = useDispatch();
+  const selector = useSelector((state) => state.keywords);
   const spanFade = useRef();
   const searchBar = useRef();
 
@@ -36,6 +39,33 @@ function SearchBar() {
     }
   };
 
+  const onSearch = () => {
+    const keyword = document.getElementById("search-input").value;
+    SearchKeyword.map((search) => {
+      console.log(search.keywords);
+      let found = search.keywords.includes(keyword);
+      if (found) {
+        dispatch(setKeyword({ keyword: keyword }));
+      } else {
+        const breakItDownToSingleWords = keyword.split(" ");
+        breakItDownToSingleWords.map((word) => {
+          found = search.keywords.includes(word);
+          if (found) {
+            dispatch(setKeyword({ keyword: word }));
+            return;
+          }
+        });
+      }
+    });
+    document.getElementById("search-input").value = null;
+  };
+
+  const onEnter = (e) => {
+    if (e.keyCode === 13) {
+      onSearch();
+    }
+  };
+
   return (
     <>
       <Container id="search">
@@ -43,9 +73,11 @@ function SearchBar() {
           Find all the Services for your Event with us
         </span>
         <div className="search-bar-wrapper fade" ref={searchBar}>
-          <input type="text" placeholder="Search Service..." />
-          <SearchIcon className="search-icon" />
-          <button className="search">Search</button>
+          <input type="text" placeholder="Search Service..." onKeyUp={(e) => onEnter(e)} id="search-input" />
+          <SearchIcon className="search-icon" onClick={() => onSearch()} />
+          <button className="search" onClick={() => onSearch()}>
+            Search
+          </button>
           <button className="filter-search" id="filter-btn" onClick={() => OpenFilterWindow()}>
             Filter
           </button>
