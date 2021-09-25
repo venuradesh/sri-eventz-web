@@ -1,9 +1,14 @@
 import React, { useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import SearchIcon from "@material-ui/icons/Search";
 import gsap from "gsap";
+import FilterBox from "./FilterBox";
+import { animateScroll as scroll } from "react-scroll";
+import { unsetLevel, unsetStarRating } from "../features/FilterSlice/FilterSlice";
 
 function SearchBar() {
+  const dispatch = useDispatch();
   const spanFade = useRef();
   const searchBar = useRef();
 
@@ -11,6 +16,25 @@ function SearchBar() {
     gsap.fromTo(spanFade.current, { opacity: 0, y: "-100px" }, { opacity: 1, y: 0, duration: 1.2, delay: 1.7 });
     gsap.fromTo(searchBar.current, { opacity: 0, y: "100px" }, { opacity: 1, duration: 1, y: "0px", delay: 2.4 });
   }, []);
+
+  const OpenFilterWindow = () => {
+    document.getElementById("filter-window").classList.toggle("active");
+    scroll.scrollTo(170, {
+      duration: 1000,
+      smooth: true,
+    });
+
+    if (document.getElementById("filter-window").classList.contains("active")) {
+      gsap.fromTo(document.getElementById("filter-window"), { opacity: 0 }, { opacity: 1, duration: 0.3, transformOrigin: "top" });
+    } else {
+      dispatch(unsetStarRating());
+      dispatch(unsetLevel());
+      scroll.scrollTo(0, {
+        duration: 1000,
+        smooth: true,
+      });
+    }
+  };
 
   return (
     <>
@@ -22,9 +46,12 @@ function SearchBar() {
           <input type="text" placeholder="Search Service..." />
           <SearchIcon className="search-icon" />
           <button className="search">Search</button>
-          <button className="filter-search">Filter</button>
+          <button className="filter-search" id="filter-btn" onClick={() => OpenFilterWindow()}>
+            Filter
+          </button>
         </div>
       </Container>
+      <FilterBox />
     </>
   );
 }
@@ -67,6 +94,7 @@ const Container = styled.div`
       color: #ffffff;
       padding: 20px 20px;
       padding-right: 160px;
+      padding-left: 30px;
       border: none;
       border-radius: 100px;
       outline: none;
