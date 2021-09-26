@@ -1,20 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  level: "all",
-  starRating: null,
+  starRating: 1,
 };
 
 const FilterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
-    setLevel: (state, action) => {
-      state.level = action.payload.level;
-    },
-    unsetLevel: (state) => {
-      state.level = "all";
-    },
     setStarRating: (state, action) => {
       state.starRating = action.payload.star;
     },
@@ -24,5 +17,5 @@ const FilterSlice = createSlice({
   },
 });
 
-export const { setLevel, unsetLevel, setStarRating, unsetStarRating } = FilterSlice.actions;
+export const { setStarRating, unsetStarRating } = FilterSlice.actions;
 export default FilterSlice.reducer;

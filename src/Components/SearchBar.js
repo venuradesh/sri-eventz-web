@@ -5,7 +5,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import gsap from "gsap";
 import FilterBox from "./FilterBox";
 import { animateScroll as scroll } from "react-scroll";
-import { unsetLevel, unsetStarRating } from "../features/FilterSlice/FilterSlice";
+import { unsetStarRating } from "../features/FilterSlice/FilterSlice";
 import { setKeyword, unsetKeyword } from "../features/SearchSlice/SearchSlice";
 import SearchKeyword from "../Data/SearchKeywords";
 
@@ -31,7 +31,6 @@ function SearchBar() {
       gsap.fromTo(document.getElementById("filter-window"), { opacity: 0 }, { opacity: 1, duration: 0.3, transformOrigin: "top" });
     } else {
       dispatch(unsetStarRating());
-      dispatch(unsetLevel());
       scroll.scrollTo(0, {
         duration: 1000,
         smooth: true,
@@ -42,7 +41,6 @@ function SearchBar() {
   const onSearch = () => {
     const keyword = document.getElementById("search-input").value;
     SearchKeyword.map((search) => {
-      console.log(search.keywords);
       let found = search.keywords.includes(keyword);
       if (found) {
         dispatch(setKeyword({ keyword: keyword }));

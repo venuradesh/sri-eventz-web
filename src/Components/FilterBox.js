@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { setLevel, unsetLevel, setStarRating } from "../features/FilterSlice/FilterSlice";
-import gsap from "gsap";
+import { setStarRating } from "../features/FilterSlice/FilterSlice";
 
 const FilterBox = () => {
   const starRating = useSelector((state) => state.filter.starRating);
@@ -13,26 +12,6 @@ const FilterBox = () => {
 
   return (
     <Container ref={filterWindow} id="filter-window">
-      <div className="filter-by-level">
-        <span>Filter By Level</span>
-        <div className="btn-container">
-          <div className="diamond btn" onClick={() => dispatch(setLevel({ level: "diamond" }))}>
-            Diamond
-          </div>
-          <div className="sapphire btn" onClick={() => dispatch(setLevel({ level: "sapphire" }))}>
-            Sapphire
-          </div>
-          <div className="ruby btn" onClick={() => dispatch(setLevel({ level: "ruby" }))}>
-            Ruby
-          </div>
-          <div className="emerald btn" onClick={() => dispatch(setLevel({ level: "emerald" }))}>
-            Emerald
-          </div>
-          <div className="all btn" onClick={() => dispatch(unsetLevel())}>
-            all
-          </div>
-        </div>
-      </div>
       <div className="filter-by-rating">
         <span>Filter By Rating</span>
         <div className="stars">
@@ -78,7 +57,7 @@ const Container = styled.div`
   transform: translateX(-50%);
   display: none;
   width: 500px;
-  height: 400px;
+  height: 330px;
   background-color: #64495c;
   border-radius: 30px;
   padding: 20px;
@@ -208,13 +187,13 @@ const Container = styled.div`
 
   @media only screen and (max-width: 940px) {
     width: 450px;
-    height: 450px;
+    height: 400px;
   }
 
   @media only screen and (max-width: 500px) {
     width: 300px;
     top: 68%;
-    height: 500px;
+    height: 350px;
 
     &.active {
       align-items: center;
