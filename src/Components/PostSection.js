@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Post from "./Post";
@@ -11,6 +11,8 @@ function PostSection() {
   const userDB = db.collection("user");
   const searchPost = useRef();
   const keyword = useSelector((state) => state.keyword.keyword);
+  const event = useSelector((state) => state.event.eventActive);
+  const stars = useSelector((state) => state.filter.starRating);
 
   const compareByLevel = (a, b) => {
     if (a.user.level.rating < b.user.level.rating) {
@@ -48,20 +50,23 @@ function PostSection() {
       setPostsContents([]);
     }
     if (!keyword) {
-      postsDB.orderBy("dateTime", "desc").onSnapshot((snap) => {
-        snap.docs.map((doc) => {
-          let userId = doc.data().user.id;
-          userDB.doc(userId).onSnapshot((userSnap) => {
-            const userDetails = userSnap.data();
-            setPostsContents((old) => [...old, { id: doc.id, content: doc.data(), user: userDetails }]);
+      postsDB
+        .where("event", "==", event)
+        .orderBy("dateTime", "desc")
+        .onSnapshot((snap) => {
+          snap.docs.map((doc) => {
+            let userId = doc.data().user.id;
+            userDB.doc(userId).onSnapshot((userSnap) => {
+              const userDetails = userSnap.data();
+              setPostsContents((old) => [...old, { id: doc.id, content: doc.data(), user: userDetails }]);
+            });
           });
+          postsContents.sort(compareByLevel);
         });
-        postsContents.sort(compareByLevel);
-      });
     } else {
       FilterByKeyWord();
     }
-  }, [keyword]);
+  }, [keyword, event, stars]);
 
   return (
     <Container>

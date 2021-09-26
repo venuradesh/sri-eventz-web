@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
@@ -9,8 +9,11 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import gsap from "gsap";
 
 function Post(props) {
+  const post = useRef();
+
   let settings = {
     dots: true,
     infinite: true,
@@ -22,8 +25,12 @@ function Post(props) {
     adaptiveHeight: true,
   };
 
+  useEffect(() => {
+    gsap.fromTo(post.current, { opacity: 0, y: 100 }, { opacity: 1, y: 0, duration: 1 });
+  }, []);
+
   return (
-    <Container className="fade">
+    <Container className="fade" ref={post}>
       <PhotoWrapper>
         <Carousel {...settings}>
           {props.images.map((imgsrc) => (
@@ -250,6 +257,7 @@ const InfoWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
 
     .msg-profile {
       display: flex;
