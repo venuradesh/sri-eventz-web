@@ -42,7 +42,6 @@ function SearchBar() {
   const onSearch = () => {
     const keyword = document.getElementById("search-input").value;
     SearchKeyword.map((search) => {
-      console.log(search.keywords);
       let found = search.keywords.includes(keyword);
       if (found) {
         dispatch(setKeyword({ keyword: keyword }));
