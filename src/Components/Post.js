@@ -36,7 +36,7 @@ function Post(props) {
           {props.images.map((imgsrc) => (
             <Wrap>
               <div className="image">
-                <img src={imgsrc} />
+                <img src={imgsrc} alt={props.postid} />
               </div>
             </Wrap>
           ))}
