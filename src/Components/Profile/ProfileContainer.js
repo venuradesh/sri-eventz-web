@@ -20,4 +20,10 @@ const Container = styled.div`
   min-height: 100vh;
   width: 100vw;
   overflow-x: hidden;
+
+  @media only screen and (max-width: 780px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
