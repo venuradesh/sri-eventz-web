@@ -39,7 +39,8 @@ function SearchBar() {
   };
 
   const onSearch = () => {
-    const keyword = document.getElementById("search-input").value;
+    let keyword = document.getElementById("search-input").value;
+    keyword = keyword.toLowerCase();
     SearchKeyword.map((search) => {
       let found = search.keywords.includes(keyword);
       if (found) {
