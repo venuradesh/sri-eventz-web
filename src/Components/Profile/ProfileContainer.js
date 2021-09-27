@@ -17,7 +17,6 @@ const ProfileContainer = () => {
 export default ProfileContainer;
 
 const Container = styled.div`
-  position: relative;
   min-height: 100vh;
   width: 100vw;
   overflow-x: hidden;
