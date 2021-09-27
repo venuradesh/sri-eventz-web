@@ -11,37 +11,19 @@ export default function ContactForm() {
         <div className="form-group">
           <label htmlFor="name">
             Your Name
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+            <input type="text" id="name" name="name" value={name} onChange={(e) => setName(e.target.value)} />
           </label>
         </div>
         <div className="form-group">
           <label htmlFor="email">
             Your Email
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <input type="email" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           </label>
         </div>
         <div className="form-group">
           <label htmlFor="message">
             Your message
-            <textarea
-              type="text"
-              id="message"
-              name="message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
+            <textarea type="text" id="message" name="message" value={message} onChange={(e) => setMessage(e.target.value)} />
           </label>
         </div>
         <div className="button-submit">
@@ -53,7 +35,7 @@ export default function ContactForm() {
 }
 
 const FormStyle = styled.form`
-  width: 100%;
+  width: 400px;
   padding: 8px;
 
   .form-group {
@@ -67,7 +49,7 @@ const FormStyle = styled.form`
   }
   input {
     padding-bottom: 20px;
-    width: 90%;
+    width: 100%;
     height: 30px;
     color: #ffffff;
     background-color: #64495c;
@@ -77,8 +59,7 @@ const FormStyle = styled.form`
   }
 
   textarea {
-    width: 90%;
-
+    width: 100%;
     color: #ffffff;
     background-color: #64495c;
     outline: none;
@@ -109,8 +90,38 @@ const FormStyle = styled.form`
       }
     }
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1280px) {
+    display: flex;
     flex-direction: column;
-    margin-top: -120px;
+    align-items: center;
+    width: 100%;
+
+    .form-group {
+      width: 100%;
+
+      label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+        font-size: 1.2rem;
+
+        input {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
+
+  @media only screen and (max-width: 400px) {
+    width: 300px;
+  }
+
+  @media only screen and (max-width: 370px) {
+    width: 250px;
   }
 `;

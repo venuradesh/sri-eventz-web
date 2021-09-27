@@ -28,7 +28,6 @@ export default function TestimonialsSection() {
       <div className="container">
         <div className="subHeading"> see what our clients say about me</div>
         <div className="Heading">Testimonials</div>
-
         <div className="testimonial-wrapper">
           <SwitchTransition component={null}>
             <CSSTransition key={activeSlide.id} timeout={300} classNames="fade">
@@ -46,22 +45,10 @@ export default function TestimonialsSection() {
         </div>
 
         <div className="arrows">
-          <div
-            className="prev"
-            onClick={handlePrev}
-            role="button"
-            tabIndex={0}
-            onKeyDown={handlePrev}
-          >
+          <div className="prev" onClick={handlePrev} role="button" tabIndex={0} onKeyDown={handlePrev}>
             <MdKeyboardArrowLeft />
           </div>
-          <div
-            className="next"
-            onClick={handleNext}
-            role="button"
-            tabIndex={0}
-            onKeyDown={handleNext}
-          >
+          <div className="next" onClick={handleNext} role="button" tabIndex={0} onKeyDown={handleNext}>
             <MdKeyboardArrowRight />
           </div>
         </div>
@@ -80,14 +67,14 @@ const TestimonialSectionStyles = styled.div`
   .subHeading {
     padding-top: 20px;
     font-size: 1.3rem;
-    color: #412542;
+    color: #ffffff;
     font-weight: 600;
     margin-bottom: 10px;
   }
 
   .Heading {
     font-size: 1.6rem;
-    color: #412542;
+    color: #ffffff;
     margin-bottom: 20px;
     font-weight: 700;
     text-transform: uppercase;
@@ -96,13 +83,14 @@ const TestimonialSectionStyles = styled.div`
     position: relative;
     max-width: 700px;
     margin: 0 auto;
+    height: 250px;
   }
+
   .testimonial-info {
     width: 100%;
     height: fit-content;
     border-radius: 3px;
     background-color: black;
-
     padding: 20px;
     box-shadow: 0 0px 7px -2px rgba(0, 0, 0, 0.55);
     color: #ffffff;
@@ -114,6 +102,7 @@ const TestimonialSectionStyles = styled.div`
       margin: 0 auto;
       font-size: 1.1rem;
       line-height: 1.3em;
+      color: rgba(255, 255, 255, 0.3);
       @media only screen and (max-width: 768px) {
         font-size: 1rem;
       }
@@ -121,12 +110,13 @@ const TestimonialSectionStyles = styled.div`
   }
   .testimonial-name {
     margin-top: 2rem;
-
+    color: rgba(255, 255, 255, 0.7);
     font-size: 1.4rem;
   }
   .testimonial-title {
     font-size: 1rem;
     margin-top: 0.3rem;
+    color: rgba(255, 255, 255, 0.5);
   }
   .arrows {
     margin-top: 2rem;
@@ -169,5 +159,11 @@ const TestimonialSectionStyles = styled.div`
     transform: scale(0.96);
     transition: 200ms ease-in;
     transition-property: transform, opacity;
+  }
+
+  @media only screen and (max-width: 800px) {
+    .testimonial-wrapper {
+      height: 300px;
+    }
   }
 `;
