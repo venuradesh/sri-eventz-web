@@ -8,7 +8,12 @@ import Feed from "./Components/Feed";
 import Footer from "./Components/Footer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
 import AboutSection from "./Components/Profile/AboutSection";
+import PackageSection from "./Components/Profile/PackageSection";
 import Login from "./Components/Login/Login";
+import GallerySection from "./Components/Profile/GallerySection";
+import TestimonialsSection from "./Components/Profile/TestimonialsSection";
+import ContactSection from "./Components/Profile/ContactSection";
+import Foot from "./Components/Profile/Foot";
 
 function App() {
   return (
@@ -28,6 +33,11 @@ function App() {
             <div className="profile">
               <ProfileContainer />
               <AboutSection />
+              <PackageSection />
+              <GallerySection />
+              <TestimonialsSection />
+              <ContactSection />
+              <Foot />
             </div>
           </Route>
           <Router exact path="/login">

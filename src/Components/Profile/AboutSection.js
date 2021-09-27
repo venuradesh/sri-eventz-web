@@ -3,26 +3,19 @@ import styled from "styled-components";
 
 import About from "./About";
 
-
-
-
-function AboutSection (){
-    return (
+function AboutSection() {
+  return (
     <Container>
-        <About/>
-      
-       
-  </Container>
-    );
+      <About />
+    </Container>
+  );
 }
 
 export default AboutSection;
 const Container = styled.div`
-height: 100vh;
-width: 100vw;
-// position: relative;
-z-index: -100;
-flex-direction:column;
-
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  flex-direction: column;
+  background-color: #ffffff;
 `;
-
