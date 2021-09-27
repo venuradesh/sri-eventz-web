@@ -64,10 +64,10 @@ function Post(props) {
         </div>
         <div className="btn-container">
           <div className="msg-profile">
-            <Link to="/profile" className="profile-visit">
+            <Link to={`/profile/${props.id}`} className="profile-visit">
               Visit Profile
             </Link>
-            <Link to="/msg" className="message">
+            <Link to={`/msg/${props.id}`} className="message">
               Messege
             </Link>
           </div>

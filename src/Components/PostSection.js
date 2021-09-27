@@ -106,7 +106,7 @@ function PostSection() {
   return (
     <Container>
       {postsContents.map((post) => (
-        <Post ref={searchPost} images={post.content.images} desc={post.content.desc} user={post.user} time={post.content.dateTime} />
+        <Post ref={searchPost} id={post.content.user.id} images={post.content.images} desc={post.content.desc} user={post.user} time={post.content.dateTime} />
       ))}
     </Container>
   );
