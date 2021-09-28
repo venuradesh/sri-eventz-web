@@ -6,15 +6,9 @@ import SearchBar from "./Components/SearchBar";
 import Background from "./Components/Background";
 import Feed from "./Components/Feed";
 import Footer from "./Components/Footer";
-import ProfileContainer from "./Components/Profile/ProfileContainer";
-import AboutSection from "./Components/Profile/AboutSection";
-import PackageSection from "./Components/Profile/PackageSection";
 import Login from "./Components/Login/Login";
-import GallerySection from "./Components/Profile/GallerySection";
-import TestimonialsSection from "./Components/Profile/TestimonialsSection";
-import ContactSection from "./Components/Profile/ContactSection";
-import Foot from "./Components/Profile/Foot";
 import ChatSection from "./Components/Chat/ChatSection";
+import UserProfile from "./Components/Profile/UserProfile";
 
 function App() {
   return (
@@ -30,15 +24,9 @@ function App() {
             <Feed />
             <Footer />
           </Route>
-          <Route exact path="/profile">
+          <Route exact path="/profile/:id">
             <div className="profile">
-              <ProfileContainer />
-              <AboutSection />
-              <PackageSection />
-              <GallerySection />
-              <TestimonialsSection />
-              <ContactSection />
-              <Foot />
+              <UserProfile />
             </div>
           </Route>
           <Router exact path="/login">

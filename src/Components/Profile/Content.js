@@ -1,23 +1,32 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-const Content = () => {
+const Content = (props) => {
+  const message = useRef();
+  const history = useHistory();
+
+  const onMessageClick = () => {
+    history.push(`chat/${props.id}`);
+  };
+
   return (
     <Container>
       <div className="display-image">
-        <div className="profile-photo" src="pro.jpg">
-          <div className="fav" src="heart.png"></div>
-        </div>
+        <img className="profile-photo" src={props.profileImage}></img>
       </div>
-      <div className="name">John Hardin</div>
+      <div className="name">{props.name}</div>
 
-      <div className="quote">Fashion designer</div>
+      <div className="quote">{props.title}</div>
 
-      <div className="dis">I have been working with luxury brands using my style sense all over the world and collaborating with them in departments such as Women's Wear, Men's Wear</div>
+      <div className="dis">{props.description}</div>
       <div className="btn-container">
-        <div className="message">Message me</div>
-        <div className="call">Call me</div>
+        <div className="message" ref={message} onClick={() => onMessageClick()}>
+          Message me
+        </div>
+        <a href={`tel:+94${props.telephone},1`} className="call">
+          Call me
+        </a>
       </div>
     </Container>
   );
@@ -47,7 +56,7 @@ const Container = styled.div`
       background-size: cover;
       object-fit: cover;
       background-position: center;
-      background-image: url(/images/pro.jpg);
+      background-image: url(${(props) => props.src});
       border-radius: 50%;
       width: 125px;
       height: 125px;
@@ -69,14 +78,16 @@ const Container = styled.div`
   }
 
   .name {
-    font-size: 57px;
+    font-size: 2.5rem;
     font-weight: 370;
+    margin-top: 20px;
+    font-weight: 700;
     color: #ffffff;
   }
   .quote {
-    margin-top: 20px;
-    font-size: 30px;
-    text-transform: uppercase;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: capitalize;
     color: #ffffff;
   }
   .dis {
@@ -88,15 +99,15 @@ const Container = styled.div`
   }
   .btn-container {
     display: flex;
-    margin-top: 40px;
+    margin-top: 30px;
     align-items: center;
     column-gap: 40px;
 
     .message {
       text-align: center;
-      width: 170px;
+      width: 150px;
       background-color: #64495c;
-      height: 60px;
+      height: 50px;
       text-transform: uppercase;
       font-weight: 600;
       align-items: center;
@@ -105,8 +116,9 @@ const Container = styled.div`
       border-radius: 100px;
       color: white;
       font-weight: 500px;
-      font-size: 1.1rem;
+      font-size: 1rem;
       cursor: pointer;
+      transition: all 0.3s ease;
 
       &:hover {
         background-color: #412542;
@@ -116,10 +128,10 @@ const Container = styled.div`
 
     .call {
       text-align: center;
-      width: 170px;
+      width: 150px;
       background-color: #64495c;
       height: 100%;
-      height: 60px;
+      height: 50px;
       text-transform: uppercase;
       font-weight: 600;
       align-items: center;
@@ -128,8 +140,10 @@ const Container = styled.div`
       border-radius: 100px;
       color: white;
       font-weight: 500px;
-      font-size: 1.1rem;
+      font-size: 1rem;
       cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
 
       &:hover {
         background-color: #412542;
@@ -137,7 +151,7 @@ const Container = styled.div`
       }
     }
   }
-  
+
   @media only screen and (max-width: 780px) {
     align-items: center;
     width: 650px;
