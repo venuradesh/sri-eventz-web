@@ -16,11 +16,13 @@ export default function GallerySection() {
   );
 }
 const Container = styled.div`
-  padding: 20px 40px;
-  width: 100%;
+  padding: 20px 0px;
+  width: 100vw;
+  height: 100vh;
+  margin-bottom: 530px;
 
   .section-heading {
-    padding: 20px 0 40px;
+    padding: 20px 0 40px 40px;
     font-size: 1.3rem;
     color: #412542;
     font-weight: 600;

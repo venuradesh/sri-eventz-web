@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Content = () => {
   return (
@@ -18,10 +19,15 @@ const Content = () => {
         world and collaborating with them in departments such as Women's Wear,
         Men's Wear
       </div>
-      <div className="btn-container">
-        <div className="message">Message me</div>
-        <div className="call">Call me</div>
-      </div>
+      <InfoWrapper>
+        <div className="btn-container">
+          <Link to="/chat" className="message">
+            Messege me
+          </Link>
+
+          <div className="call">Call me</div>
+        </div>
+      </InfoWrapper>
     </Container>
   );
 };
@@ -88,55 +94,6 @@ const Container = styled.div`
     text-align: left;
     padding-right: 40px;
   }
-  .btn-container {
-    display: flex;
-
-    align-items: center;
-    height: 46px;
-    column-gap: 40px;
-
-    margin-top: 15px;
-
-    .message {
-      text-align: center;
-      width: 170px;
-      background-color: #64495c;
-      height: 100%;
-      align-items: center;
-      justify-content: center;
-      display: flex;
-      border-radius: 100px;
-      color: white;
-      font-weight: 500px;
-      font-size: 1.1rem;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #412542;
-        transform: scale(1.02);
-      }
-    }
-
-    .call {
-      text-align: center;
-      width: 170px;
-      background-color: #64495c;
-      height: 100%;
-      align-items: center;
-      justify-content: center;
-      display: flex;
-      border-radius: 100px;
-      color: white;
-      font-weight: 500px;
-      font-size: 1.1rem;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #412542;
-        transform: scale(1.02);
-      }
-    }
-  }
 
   @media only screen and (max-width: 780px) {
     align-items: center;
@@ -156,7 +113,6 @@ const Container = styled.div`
       font-size: 25px;
     }
   }
-
   @media only screen and (max-width: 690px) {
     align-items: center;
     width: 550px;
@@ -195,11 +151,6 @@ const Container = styled.div`
 
       font-size: 20px;
     }
-    .btn-container {
-      flex-direction: column;
-      row-gap: 10px;
-      height: 90px;
-    }
   }
 
   @media only screen and (max-width: 460px) {
@@ -218,11 +169,6 @@ const Container = styled.div`
       text-align: center;
 
       font-size: 14px;
-    }
-    .btn-container {
-      flex-direction: column;
-      row-gap: 10px;
-      height: 100px;
     }
   }
 
@@ -243,6 +189,88 @@ const Container = styled.div`
       font-size: 17px;
       padding: 0 0 0 20px;
     }
+  }
+`;
+const InfoWrapper = styled.div`
+  .btn-container {
+    display: flex;
+
+    align-items: center;
+    height: 46px;
+    column-gap: 40px;
+    text-decoration: none;
+    margin-top: 15px;
+
+    .message {
+      text-align: center;
+      width: 170px;
+      background-color: #64495c;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      border-radius: 100px;
+      color: white;
+      font-weight: 500px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        background-color: #412542;
+        transform: scale(1.02);
+      }
+    }
+
+    .call {
+      text-align: center;
+      width: 170px;
+      background-color: #64495c;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      border-radius: 100px;
+      color: white;
+      font-weight: 500px;
+      font-size: 1.1rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #412542;
+        transform: scale(1.02);
+      }
+    }
+  }
+
+  @media only screen and (max-width: 520px) {
+    align-items: center;
+    width: 415px;
+    padding: 0 35px;
+
+    .btn-container {
+      flex-direction: column;
+      row-gap: 10px;
+      height: 90px;
+    }
+  }
+
+  @media only screen and (max-width: 460px) {
+    align-items: center;
+    width: 350px;
+    padding: 0 35px;
+
+    .btn-container {
+      flex-direction: column;
+      row-gap: 10px;
+      height: 100px;
+    }
+  }
+
+  @media only screen and (max-width: 390px) {
+    align-items: center;
+    width: 300px;
+
     .btn-container {
       flex-direction: column;
       row-gap: 10px;

@@ -14,6 +14,7 @@ import GallerySection from "./Components/Profile/GallerySection";
 import TestimonialsSection from "./Components/Profile/TestimonialsSection";
 import ContactSection from "./Components/Profile/ContactSection";
 import Foot from "./Components/Profile/Foot";
+import ChatSection from "./Components/Chat/ChatSection";
 
 function App() {
   return (
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Router exact path="/login">
             <Login />
+          </Router>
+          <Router exact path="/chat">
+            <ChatSection />
           </Router>
         </Switch>
       </div>
