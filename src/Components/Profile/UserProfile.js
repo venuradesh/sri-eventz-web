@@ -21,6 +21,7 @@ const UserProfile = () => {
       .get()
       .then((docs) => {
         setUserData(docs.data());
+        console.log(userData);
       });
   }, [params]);
 
@@ -32,8 +33,8 @@ const UserProfile = () => {
         <>
           <ProfileContainer id={params.id} telephone={userData.contactNo} name={userData.name} profileImage={userData.profileImage} level={userData.level} description={userData.description} title={userData.title} />
           <AboutSection aboutMe={userData.aboutMe} skills={userData.skills} progress={userData.progress} user={userData} />
-          <PackageSection />
-          <GallerySection />
+          <PackageSection packages={userData.packages} />
+          <GallerySection photos={userData.projects} />
           <TestimonialsSection />
           <ContactSection />
           <Foot />

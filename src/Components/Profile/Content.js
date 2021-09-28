@@ -154,15 +154,16 @@ const Container = styled.div`
 
   @media only screen and (max-width: 780px) {
     align-items: center;
-    width: 650px;
+    width: 100vw;
     margin-left: 0;
 
     .name {
-      font-size: 1rem;
+      font-size: 2rem;
     }
 
     .quote {
-      font-size: 2.5rem;
+      margin-top: 10px;
+      font-size: 1rem;
     }
 
     .dis {
@@ -180,7 +181,6 @@ const Container = styled.div`
   }
 
   @media only screen and (max-width: 580px) {
-    align-items: center;
     width: 90vw;
 
     .dis {
@@ -190,24 +190,36 @@ const Container = styled.div`
   }
 
   @media only screen and (max-width: 500px) {
-    align-items: center;
-    width: 350px;
+    width: 90vw;
     padding: 0 35px;
 
-    .quote {
+    .name {
+      width: 100%;
       text-align: center;
+      font-size: 1.5rem;
+      display: flex;
+      justify-content: center;
     }
+
     .dis {
-      width: 400px;
+      width: 100%;
     }
   }
 
-  @media only screen and (max-width: 390px) {
-    align-items: center;
-    width: 300px;
+  @media only screen and (max-width: 400px) {
+    width: 90vw;
+    padding: 0;
+
+    .name {
+      font-size: 1.5rem;
+    }
 
     .dis {
       width: 300px;
     }
+  }
+
+  @media only screen and (max-width: 370px) {
+    width: 80vw;
   }
 `;

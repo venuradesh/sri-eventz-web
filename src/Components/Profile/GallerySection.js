@@ -1,53 +1,74 @@
 import React from "react";
 import styled from "styled-components";
 import Gallery from "./Gallery";
-import GalleryContent from "../../Data/GalleryContent";
 
-export default function GallerySection() {
+export default function GallerySection(props) {
+  console.log(props);
   return (
     <Container>
       <div className="section-heading">Recent projects</div>
-      <div className="images">{GalleryContent.map((photo) => photo.images.map((image) => <Gallery src={image} />))}</div>
+      <div className="images-container">
+        {props.photos.map((photo) => (
+          <Gallery src={photo} />
+        ))}
+      </div>
     </Container>
   );
 }
 const Container = styled.div`
-  padding: 20px 40px;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin-bottom: 30px;
+  padding: 20px 40px;
+  overflow: hidden;
+  margin-top: 30px;
+  padding: 0 40px;
 
   .section-heading {
-    padding: 20px 0 40px;
+    padding-left: 40px;
+    padding-bottom: 20px;
     font-size: 2.5rem;
     text-transform: uppercase;
     color: #412542;
     font-weight: 700;
   }
 
-  .images {
-    display: flex;
+  .images-container {
     column-gap: 10px;
     row-gap: 10px;
     flex-wrap: wrap;
     width: 100%;
-    justify-content: center;
+    padding: 0px 40px;
+    display: flex;
   }
 
-  @media only screen and (max-width: 930px) {
+  @media only screen and (max-width: 980px) {
+    padding: 20px 0px;
+
     .section-heading {
       font-size: 1.8rem;
+      text-align: left;
     }
 
-    .images {
-      align-items: center;
+    .images-container {
+      padding-top: 20px;
     }
   }
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 590px) {
     flex-direction: column;
     align-items: center;
+
+    .images-container {
+      margin-left: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 410px) {
+    padding: 0;
+
+    .images-container {
+      padding: 0;
+    }
   }
 `;
