@@ -130,7 +130,8 @@ const ContactSectionStyle = styled.div`
     }
 
     .right {
-      width: auto;
+      max-width: 100vw;
+      overflow: hidden;
     }
   }
 `;

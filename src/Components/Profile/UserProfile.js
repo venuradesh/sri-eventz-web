@@ -34,7 +34,7 @@ const UserProfile = () => {
           <ProfileContainer id={params.id} telephone={userData.contactNo} name={userData.name} profileImage={userData.profileImage} level={userData.level} description={userData.description} title={userData.title} />
           <AboutSection aboutMe={userData.aboutMe} skills={userData.skills} progress={userData.progress} user={userData} />
           <PackageSection packages={userData.packages} />
-          <GallerySection />
+          <GallerySection photos={userData.projects} />
           <TestimonialsSection />
           <ContactSection />
           <Foot />

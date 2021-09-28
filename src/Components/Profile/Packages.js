@@ -32,7 +32,7 @@ export default function Packages(props) {
 const Container = styled.div`
   flex-direction: column;
   padding: 20px;
-  padding-left: 60px;
+  padding-left: 80px;
 
   .section-heading {
     font-size: 2.3rem;
@@ -52,7 +52,7 @@ const Container = styled.div`
     .card-container {
       display: flex;
       width: 100%;
-      padding: 20px;
+      padding-bottom: 20px;
     }
   }
 
