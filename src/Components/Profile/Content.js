@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Content = () => {
   return (
@@ -85,7 +86,6 @@ const Container = styled.div`
     margin-top: 20px;
     text-align: left;
   }
-
   .btn-container {
     display: flex;
     margin-top: 40px;
@@ -137,7 +137,7 @@ const Container = styled.div`
       }
     }
   }
-
+  
   @media only screen and (max-width: 780px) {
     align-items: center;
     width: 650px;
@@ -183,7 +183,6 @@ const Container = styled.div`
     .quote {
       text-align: center;
     }
-
     .dis {
       width: 400px;
     }

@@ -11,10 +11,11 @@ export default function Gallery(props) {
 
 const Container = styled.div`
   width: 203px;
-  height: 203px;
+  height: 303px;
+
   img {
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    height: 400px;
     object-fit: cover;
 
     &:hover {
