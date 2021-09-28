@@ -12,7 +12,7 @@ const FilterSlice = createSlice({
       state.starRating = action.payload.star;
     },
     unsetStarRating: (state) => {
-      state.starRating = null;
+      state.starRating = 1;
     },
   },
 });

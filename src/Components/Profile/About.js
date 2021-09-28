@@ -5,28 +5,15 @@ export default function AboutSection() {
   return (
     <AboutSectionStyles>
       <div className="container">
-        <div className="left">
+        <Left>
           <div className="aboutMe">
-            <div className="subHeading">About me</div>
-            <div className="Heading">Why hire me for your next Project</div>
-            <div className="para">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-              quo autem beatae officia optio consequatur est, eaque, aut,
-              aspernatur nisi eos? Labore, eum perspiciatis fugiat placeat
-              assumenda recusandae, suscipit quasi consectetur autem accusantium
-              ipsum, esse unde vel fugit quas. Assumenda impedit laboriosam,
-              enim, voluptatem eveniet esse excepturi sequi laudantium
-              perspiciatis mollitia illum modi! Quod odit nobis magni autem
-              obcaecati sit amet, voluptas pariatur adipisci
-            </div>
+            <div className="heading">About me</div>
+            <div className="sub-heading">Why hire me for your next Project</div>
+            <div className="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quo autem beatae officia optio consequatur est, eaque, aut, aspernatur nisi eos? Labore, eum perspiciatis fugiat placeat assumenda recusandae, suscipit quasi consectetur autem accusantium ipsum, esse unde vel fugit quas. Assumenda impedit laboriosam, enim, voluptatem eveniet esse excepturi sequi laudantium perspiciatis mollitia illum modi! Quod odit nobis magni autem obcaecati sit amet, voluptas pariatur adipisci</div>
           </div>
           <div className="skills">
             <div className="skills-heading">Skills</div>
-            <div className="skills-des">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
-              aliquam culpa velit officiis recusandae assumenda, natus omnis nam
-              dolorum est.
-            </div>
+            <div className="skills-des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt facilis corporis incidunt non ullam necessitatibus dignissimos qui quis fuga quod ipsum optio, veritatis iste quae ab dolores consequuntur quam deserunt commodi soluta hic, animi est. Vel tenetur impedit, hic inventore, iste nisi, similique autem odio soluta sit error quod laboriosam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum aliquam culpa velit officiis recusandae assumenda, natus omnis nam dolorum est.</div>
           </div>
           <div className="bio">
             <div className="name-location">
@@ -44,343 +31,315 @@ export default function AboutSection() {
               <img src="/images/play.png"></img>
             </div>
           </div>
-        </div>
+        </Left>
 
-        <div className="right">
+        <Right>
           <div className="Progress">
             <ul>
               <li>
                 <h5>PROJECTS COMPLETION</h5>
-
-                <span class="bar bar1"></span>
+                <div class="outer-bar bar1">
+                  <div className="inner-bar"></div>
+                </div>
               </li>
               <li>
                 <h5>RESPONSE RATE</h5>
-
-                <span class="bar bar2"></span>
+                <div class="outer-bar bar2">
+                  <div className="inner-bar"></div>
+                </div>
               </li>
               <li>
                 <h5>POSITIVE RATING</h5>
-
-                <span class="bar bar3"></span>
+                <div class="outer-bar bar3">
+                  <div className="inner-bar"></div>
+                </div>
               </li>
             </ul>
           </div>
           <div className="lineChart"></div>
-        </div>
+        </Right>
       </div>
     </AboutSectionStyles>
   );
 }
 
 const AboutSectionStyles = styled.div`
+  display: flex;
+  justify-content: center;
+
   .container {
-    width: 100%;
     display: flex;
-    padding: 40px;
-    max-width: 100vw;
-    height: 100vh;
-    column-gap: 20px;
-
-    .left {
-      height: 100%;
-      flex: 2;
-      padding-right: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 0px 7px -3px rgba(0, 0, 0, 0.75);
-      padding: 20px;
-
-      .aboutMe {
-        .subHeading {
-          font-size: 1.3rem;
-          color: #412542;
-          font-weight: 600;
-          margin-bottom: 20px;
-        }
-
-        .Heading {
-          font-size: 1.6rem;
-          color: #412542;
-          margin-bottom: 20px;
-          font-weight: 700;
-          text-transform: uppercase;
-        }
-
-        .para {
-          font-size: 1rem;
-          font-weight: 400;
-          color: #64495c;
-          text-align: justify;
-        }
-      }
-
-      .skills {
-        .skills-heading {
-          font-size: 1.6rem;
-          color: #412542;
-          margin-bottom: 20px;
-          font-weight: 700;
-          text-transform: uppercase;
-        }
-
-        .skills-des {
-          font-size: 1rem;
-          color: #64495c;
-          font-weight: 400;
-          text-align: justify;
-          width: 80%;
-        }
-      }
-
-      .bio {
-        height: 100px;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-
-        .name-location {
-          display: flex;
-
-          .name,
-          .loc {
-            flex: 1;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #64495c;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-          }
-        }
-
-        .level-lang {
-          display: flex;
-
-          .level,
-          .lang {
-            flex: 1.2;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #64495c;
-            text-transform: uppercase;
-          }
-        }
-      }
-
-      .btn-container {
-        display: flex;
-
-        .btn {
-          color: #ffffff;
-          background-color: #64495c;
-          text-align: center;
-          font-size: 1.1rem;
-          font-weight: 400;
-          text-transform: uppercase;
-          cursor: pointer;
-          padding: 10px 10px;
-
-          &:hover {
-            background-color: #412542;
-            transform: scale(1.02);
-          }
-        }
-
-        .more-btn {
-          width: 150px;
-          border-radius: 100px;
-          transition: all 0.3s ease;
-          margin-right: 20px;
-        }
-
-        .play-btn {
-          width: 45px;
-          height: 45px;
-          background-color: #64495c;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.3s ease;
-
-          img {
-            width: 16px;
-          }
-        }
-      }
-    }
-
-    .right {
-      flex: 1;
-      padding: 20px;
-      box-shadow: 0 0px 7px -3px rgba(0, 0, 0, 0.75);
-
-      font-size: 1 rem;
-      list-decoration: none;
-      font-weight: 400;
-
-      justify-content: space bitween;
-
-      overflow: hidden;
-
-      .Progress {
-        height: 50%;
-        width: 100%;
-        justify-content: space bitween;
-        padding-bottom: 20px;
-        position:relative;
-
-        @keyframes load {
-          from {
-            width: 0%;
-          }
-        }
-
-        @-webkit-keyframes load {
-          from {
-            width: 0%;
-          }
-        }
-        @-moz-keyframes load {
-          from {
-            width: 0%;
-          }
-        }
-
-        @-o-keyframes load {
-          from {
-            width: 0%;
-          }
-        }
-
-      ul{
-        li{
-          margin-bottom: 40px;
-          list-style: none;
-          text-transform: uppercase;
-          
-            h5 {
-              padding-bottom: 10px;
-            }
-          
-        
-            .bar {
-              // width: 100%;
-              // height: 15px;
-              // border-radius: 1000px;
-              // background-color: #64495c;
-              // position:absolute;
-              
-             
-
-              &::before {
-                content: "";
-                width: 100%;
-                height: 15px;
-                border-radius: 1000px;
-                background-color: #64495c;
-                position:absolute;
-                 animation: load 3s 0s;
-                -webkit-animation: load 3s 0s;
-                -moz-animation: load 3s 0s;
-                -o-animation:load 3s 0s;
-
-              
-              }
-             
-            }
-            
-                
-            }
-          }
-        }
-      }
-    }
-    .lineChart {
-      height: 50%;
-      background-color: black;
-      background-size: cover;
-      object-fit: cover;
-      background-position: center;
-      background-image: url(/images/google-calendar.png);
-      align-items: center;
-    }
+    align-items: center;
   }
 
-  @media only screen and (max-width: 950px) {
-    .left {
-      flex: 4;
-    }
-    .right {
-      flex: 3;
-    }
-  }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1250px) {
     .container {
       flex-direction: column;
-      text-align: center;
-      font-size: 0.5 rem;
+      row-gap: 30px;
     }
-    .left {
-      width: 100%;
+  }
+`;
 
-      .bio {
-        flex: 1;
-        font-size: 1rem;
-        font-weight: 600;
-      }
+const Left = styled.div`
+  flex: 1.5;
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+
+  .aboutMe {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    .heading {
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #412542;
     }
-    .right {
-      margin-top: 2rem;
-      width: 100%;
 
-      .Porgress {
-        margin-bottom: 2rem;
-        align-items:center;
-
-        .ul {
-          padding-bottom: 10px;
-          align-items:center;
-
-         
-        }
-      }
-      .lineChart{
-        align-items:center;
-      }
+    .sub-heading {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #412542;
     }
 
     .para {
-      margin: 0 auto;
-      margin-top: 2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #64495c;
+      text-align: justify;
     }
-    .btn-container {
-      // flex-direction: column;
-      gap: 0rem;
+  }
 
-      .button-wrapper,
-      a {
-        width: 100%;
-        text-align: center;
+  .skills {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    .skills-heading {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #412542;
+    }
+
+    .skills-des {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #64495c;
+      text-align: justify;
+    }
+  }
+
+  .bio {
+    .name-location,
+    .level-lang {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.3rem;
+      color: #412542;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .loc,
+    .lang {
+      width: 400px;
+    }
+  }
+
+  .btn-container {
+    display: flex;
+
+    .btn {
+      background-color: #64495c;
+
+      &:hover {
+        background-color: #412542;
+      }
+    }
+
+    .more-btn {
+      width: 150px;
+      padding: 15px 10px;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-align: center;
+      color: #ffffff;
+      border-radius: 50px;
+      margin-right: 20px;
+    }
+
+    .play-btn {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+
+      img {
+        transform: translateX(3px);
+        width: 30px;
       }
     }
   }
-  @media only screen and (max-width: 530px) {
-    .name,
-    .loc {
-      flex: 1;
-      font-size: 1px;
+
+  @media only screen and (max-width: 1400px) {
+    .bio {
+      .name-location,
+      .level-lang {
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
+
+      .loc,
+      .lang {
+        width: max-content;
+      }
+
+      .name,
+      .level {
+        margin-bottom: 20px;
+      }
     }
+  }
+
+  @media only screen and (max-width: 1250px) {
+    width: 80%;
+  }
+
+  @media only screen and (max-width: 580px) {
+    width: 100%;
   }
 
   @media only screen and (max-width: 480px) {
-    .left {
-      .bio {
-        font-size: 1 rem;
+    padding: 60px;
+
+    .aboutMe {
+      .heading {
+        font-size: 1.7rem;
+        font-weight: 700;
       }
-      
+
+      .sub-heading {
+        font-size: 1.3rem;
+      }
+
+      .para {
+        font-size: 0.9rem;
+      }
     }
+
+    .skills {
+      .skills-heading {
+        font-size: 1.3rem;
+      }
+
+      .skills-des {
+        font-size: 0.9rem;
+      }
+    }
+
+    .bio {
+      .name-location,
+      .level-lang {
+        font-size: 1rem;
+        row-gap: 0px;
+        margin-bottom: 5px;
+      }
+
+      .name,
+      .level {
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    padding: 30px;
+    width: 100%;
+
+    .btn-container {
+      .more-btn {
+        width: 100px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        font-size: 1rem;
+      }
+
+      .play-btn {
+        width: 50px;
+        height: 50px;
+
+        img {
+          width: 20px;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 330px) {
+    padding: 20px;
+  }
+`;
+
+const Right = styled.div`
+  flex: 1;
+  padding: 80px;
+
+  ul {
+    list-style: none;
+
+    li {
+      h5 {
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #412542;
+      }
+
+      .outer-bar {
+        margin-bottom: 20px;
+        height: 30px;
+        width: 100%;
+        background-color: #64495c;
+        border-radius: 50px;
+        overflow: hidden;
+
+        .inner-bar {
+          width: 80%;
+          height: 100%;
+          background-color: #412542;
+          border-radius: 50px;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 1250px) {
+    width: 80%;
+  }
+
+  @media only screen and (max-width: 580px) {
+    padding: 60px;
+  }
+
+  @media only screen and (max-width: 480px) {
+    padding: 30px;
+    width: 80%;
+  }
+
+  @media only screen and (max-width: 370px) {
+    padding: 20px;
+    width: 90%;
   }
 `;

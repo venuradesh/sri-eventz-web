@@ -2,10 +2,7 @@ import React from "react";
 import { MdPlace } from "react-icons/md";
 import styled from "styled-components";
 
-export default function ContactInfoItem({
-  icon = <MdPlace />,
-  text = "I need text ",
-}) {
+export default function ContactInfoItem({ icon = <MdPlace />, text = "I need text " }) {
   return (
     <ItemStyles>
       <div className="icon">{icon}</div>
@@ -30,9 +27,15 @@ const ItemStyles = styled.div`
     width: 3.5rem;
   }
 
-  @media only screen and (max-width: 768px) {
-    flex-direction: column;
-    margin-top: 30px;
-    line-height: 1px;
+  @media only screen and (max-width: 1280px) {
+    .icon {
+      * {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    width: 300px;
   }
 `;

@@ -108,7 +108,9 @@ const Header = () => {
       <Navigation ref={nav_menu}>
         <ul ref={ul}>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" onClick={() => window.location.reload()}>
+              Home
+            </Link>
           </li>
           <li>
             <Link to="/about-us">About Us</Link>

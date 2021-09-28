@@ -33,8 +33,7 @@ const Container = styled.div`
   justify-content: space-between;
   padding: 30px 40px;
   position: relative;
-
-  idth: 100vw;
+  width: 100vw;
 
   .social-media {
     display: flex;

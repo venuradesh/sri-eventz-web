@@ -14,20 +14,11 @@ const Content = () => {
 
       <div className="quote">Fashion designer</div>
 
-      <div className="dis">
-        I have been working with luxury brands using my style sense all over the
-        world and collaborating with them in departments such as Women's Wear,
-        Men's Wear
+      <div className="dis">I have been working with luxury brands using my style sense all over the world and collaborating with them in departments such as Women's Wear, Men's Wear</div>
+      <div className="btn-container">
+        <div className="message">Message me</div>
+        <div className="call">Call me</div>
       </div>
-      <InfoWrapper>
-        <div className="btn-container">
-          <Link to="/chat" className="message">
-            Messege me
-          </Link>
-
-          <div className="call">Call me</div>
-        </div>
-      </InfoWrapper>
     </Container>
   );
 };
@@ -40,16 +31,15 @@ const Container = styled.div`
   top: 50%;
   transform: translateY(-38%);
   padding: 20px;
-  // row-gap: 10px;
+  height: 500px;
   margin-left: 40px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
   .display-image {
     height: 125px;
-
     display: flex;
-
     align-items: center;
 
     .profile-photo {
@@ -77,135 +67,38 @@ const Container = styled.div`
       }
     }
   }
+
   .name {
     font-size: 57px;
     font-weight: 370;
-
     color: #ffffff;
   }
   .quote {
+    margin-top: 20px;
     font-size: 30px;
-
+    text-transform: uppercase;
     color: #ffffff;
   }
   .dis {
     color: #ffffff;
     font-weight: 300;
+    font-size: 1rem;
+    margin-top: 20px;
     text-align: left;
-    padding-right: 40px;
   }
-
-  @media only screen and (max-width: 780px) {
-    align-items: center;
-    width: 650px;
-    padding: 0 48px;
-
-    .name {
-      font-size: 50px;
-    }
-
-    .quote {
-      font-size: 38px;
-    }
-    .dis {
-      text-align: center;
-
-      font-size: 25px;
-    }
-  }
-  @media only screen and (max-width: 690px) {
-    align-items: center;
-    width: 550px;
-    padding: 0 47px;
-
-    .name {
-      font-size: 50px;
-    }
-
-    .quote {
-      font-size: 30px;
-    }
-    .dis {
-      text-align: center;
-
-      font-size: 20px;
-    }
-  }
-
-  @media only screen and (max-width: 520px) {
-    align-items: center;
-    width: 415px;
-    padding: 0 35px;
-
-    .name {
-      font-size: 30px;
-      padding: 0 0 -30px;
-    }
-
-    .quote {
-      font-size: 25px;
-      padding: 0 0 -30px;
-    }
-    .dis {
-      text-align: center;
-
-      font-size: 20px;
-    }
-  }
-
-  @media only screen and (max-width: 460px) {
-    align-items: center;
-    width: 350px;
-    padding: 0 35px;
-
-    .name {
-      font-size: 35px;
-    }
-
-    .quote {
-      font-size: 24px;
-    }
-    .dis {
-      text-align: center;
-
-      font-size: 14px;
-    }
-  }
-
-  @media only screen and (max-width: 390px) {
-    align-items: center;
-    width: 300px;
-
-    .name {
-      font-size: 35px;
-    }
-
-    .quote {
-      font-size: 17px;
-    }
-    .dis {
-      text-align: center;
-
-      font-size: 17px;
-      padding: 0 0 0 20px;
-    }
-  }
-`;
-const InfoWrapper = styled.div`
   .btn-container {
     display: flex;
-
+    margin-top: 40px;
     align-items: center;
-    height: 46px;
     column-gap: 40px;
-    text-decoration: none;
-    margin-top: 15px;
 
     .message {
       text-align: center;
       width: 170px;
       background-color: #64495c;
-      height: 100%;
+      height: 60px;
+      text-transform: uppercase;
+      font-weight: 600;
       align-items: center;
       justify-content: center;
       display: flex;
@@ -214,7 +107,6 @@ const InfoWrapper = styled.div`
       font-weight: 500px;
       font-size: 1.1rem;
       cursor: pointer;
-      text-decoration: none;
 
       &:hover {
         background-color: #412542;
@@ -227,6 +119,9 @@ const InfoWrapper = styled.div`
       width: 170px;
       background-color: #64495c;
       height: 100%;
+      height: 60px;
+      text-transform: uppercase;
+      font-weight: 600;
       align-items: center;
       justify-content: center;
       display: flex;
@@ -242,28 +137,54 @@ const InfoWrapper = styled.div`
       }
     }
   }
-
-  @media only screen and (max-width: 520px) {
+  
+  @media only screen and (max-width: 780px) {
     align-items: center;
-    width: 415px;
-    padding: 0 35px;
+    width: 650px;
+    margin-left: 0;
+
+    .name {
+      font-size: 1rem;
+    }
+
+    .quote {
+      font-size: 2.5rem;
+    }
+
+    .dis {
+      width: 500px;
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
 
     .btn-container {
+      margin-top: 20px;
       flex-direction: column;
-      row-gap: 10px;
-      height: 90px;
+      row-gap: 15px;
     }
   }
 
-  @media only screen and (max-width: 460px) {
+  @media only screen and (max-width: 580px) {
+    align-items: center;
+    width: 90vw;
+
+    .dis {
+      text-align: center;
+      width: 450px;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
     align-items: center;
     width: 350px;
     padding: 0 35px;
 
-    .btn-container {
-      flex-direction: column;
-      row-gap: 10px;
-      height: 100px;
+    .quote {
+      text-align: center;
+    }
+    .dis {
+      width: 400px;
     }
   }
 
@@ -271,10 +192,8 @@ const InfoWrapper = styled.div`
     align-items: center;
     width: 300px;
 
-    .btn-container {
-      flex-direction: column;
-      row-gap: 10px;
-      height: 70px;
+    .dis {
+      width: 300px;
     }
   }
 `;
