@@ -4,12 +4,12 @@ import Nav from "./Nav";
 import Screen from "./Screen";
 import Content from "./Content";
 
-const ProfileContainer = () => {
+const ProfileContainer = (props) => {
   return (
     <Container>
       <Screen />
       <Nav />
-      <Content />
+      <Content id={props.id} telephone={props.telephone} name={props.name} profileImage={props.profileImage} level={props.level} description={props.description} title={props.title} />
     </Container>
   );
 };

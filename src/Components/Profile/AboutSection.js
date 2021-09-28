@@ -3,12 +3,9 @@ import styled from "styled-components";
 
 import About from "./About";
 
-function AboutSection() {
-  return (
-    <Container>
-      <About />
-    </Container>
-  );
+function AboutSection(props) {
+  console.log(props.user);
+  return <Container>{<About user={props.user} />}</Container>;
 }
 
 export default AboutSection;
@@ -17,4 +14,5 @@ const Container = styled.div`
   overflow-x: hidden;
   flex-direction: column;
   background-color: #ffffff;
+  min-height: 100vh;
 `;

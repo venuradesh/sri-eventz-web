@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function AboutSection() {
+export default function AboutSection(props) {
+  console.log(props);
+
   return (
     <AboutSectionStyles>
       <div className="container">
@@ -9,20 +11,20 @@ export default function AboutSection() {
           <div className="aboutMe">
             <div className="heading">About me</div>
             <div className="sub-heading">Why hire me for your next Project</div>
-            <div className="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quo autem beatae officia optio consequatur est, eaque, aut, aspernatur nisi eos? Labore, eum perspiciatis fugiat placeat assumenda recusandae, suscipit quasi consectetur autem accusantium ipsum, esse unde vel fugit quas. Assumenda impedit laboriosam, enim, voluptatem eveniet esse excepturi sequi laudantium perspiciatis mollitia illum modi! Quod odit nobis magni autem obcaecati sit amet, voluptas pariatur adipisci</div>
+            <div className="para">{props.user.aboutMe}</div>
           </div>
           <div className="skills">
             <div className="skills-heading">Skills</div>
-            <div className="skills-des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt facilis corporis incidunt non ullam necessitatibus dignissimos qui quis fuga quod ipsum optio, veritatis iste quae ab dolores consequuntur quam deserunt commodi soluta hic, animi est. Vel tenetur impedit, hic inventore, iste nisi, similique autem odio soluta sit error quod laboriosam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum aliquam culpa velit officiis recusandae assumenda, natus omnis nam dolorum est.</div>
+            <div className="skills-des">{props.user.skills}</div>
           </div>
           <div className="bio">
             <div className="name-location">
-              <div className="name">Name: John Hardin</div>
-              <div className="loc">Location: Colombo</div>
+              <div className="name">Name: {props.user.name}</div>
+              <div className="loc">Location: {props.user.location}</div>
             </div>
             <div className="level-lang">
-              <div className="level">Level: Diamond</div>
-              <div className="lang">Languages: Sinhala / English</div>
+              <div className="level">Level: {props.user.level.name}</div>
+              <div className="lang">Languages: {props.user.languages}</div>
             </div>
           </div>
           <div className="btn-container">
@@ -33,25 +35,25 @@ export default function AboutSection() {
           </div>
         </Left>
 
-        <Right>
+        <Right projectCompletion={props.user.progress.projectCompletion} responseRate={props.user.progress.responseRate} positiveRating={props.user.progress.positiveRating}>
           <div className="Progress">
             <ul>
               <li>
-                <h5>PROJECTS COMPLETION</h5>
+                <h5>PROJECTS COMPLETION: {props.user.progress.projectCompletion}</h5>
                 <div class="outer-bar bar1">
-                  <div className="inner-bar"></div>
+                  <div className="inner-bar pr-completion"></div>
                 </div>
               </li>
               <li>
-                <h5>RESPONSE RATE</h5>
+                <h5>RESPONSE RATE: {props.user.progress.responseRate}</h5>
                 <div class="outer-bar bar2">
-                  <div className="inner-bar"></div>
+                  <div className="inner-bar response"></div>
                 </div>
               </li>
               <li>
-                <h5>POSITIVE RATING</h5>
+                <h5>POSITIVE RATING: {props.user.progress.positiveRating}</h5>
                 <div class="outer-bar bar3">
-                  <div className="inner-bar"></div>
+                  <div className="inner-bar rating"></div>
                 </div>
               </li>
             </ul>
@@ -107,7 +109,7 @@ const Left = styled.div`
     }
 
     .para {
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 500;
       color: #64495c;
       text-align: justify;
@@ -127,7 +129,7 @@ const Left = styled.div`
     }
 
     .skills-des {
-      font-size: 1rem;
+      font-size: 0.9rem;
       font-weight: 500;
       color: #64495c;
       text-align: justify;
@@ -139,7 +141,7 @@ const Left = styled.div`
     .level-lang {
       display: flex;
       justify-content: space-between;
-      font-size: 1.3rem;
+      font-size: 1 rem;
       color: #412542;
       font-weight: 600;
       text-transform: uppercase;
@@ -148,7 +150,7 @@ const Left = styled.div`
 
     .loc,
     .lang {
-      width: 400px;
+      width: 350px;
     }
   }
 
@@ -157,6 +159,8 @@ const Left = styled.div`
 
     .btn {
       background-color: #64495c;
+      transition: all 0.3s ease;
+      cursor: pointer;
 
       &:hover {
         background-color: #412542;
@@ -164,9 +168,12 @@ const Left = styled.div`
     }
 
     .more-btn {
-      width: 150px;
-      padding: 15px 10px;
-      font-size: 1.5rem;
+      width: 130px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
       text-transform: uppercase;
       font-weight: 600;
       text-align: center;
@@ -176,8 +183,8 @@ const Left = styled.div`
     }
 
     .play-btn {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -185,7 +192,7 @@ const Left = styled.div`
 
       img {
         transform: translateX(3px);
-        width: 30px;
+        width: 25px;
       }
     }
   }
@@ -309,17 +316,28 @@ const Right = styled.div`
 
       .outer-bar {
         margin-bottom: 20px;
-        height: 30px;
+        height: 20px;
         width: 100%;
         background-color: #64495c;
         border-radius: 50px;
         overflow: hidden;
 
         .inner-bar {
-          width: 80%;
           height: 100%;
           background-color: #412542;
           border-radius: 50px;
+
+          &.pr-completion {
+            width: ${(props) => props.projectCompletion};
+          }
+
+          &.response {
+            width: ${(props) => props.responseRate};
+          }
+
+          &.rating {
+            width: ${(props) => props.positiveRating};
+          }
         }
       }
     }
