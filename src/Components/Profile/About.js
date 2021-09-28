@@ -2,8 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 export default function AboutSection(props) {
-  console.log(props);
-
   return (
     <AboutSectionStyles>
       <div className="container">

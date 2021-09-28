@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import Packages from "./Packages";
 
-function PackageSection() {
+function PackageSection(props) {
   return (
     <Container>
-      <Packages />
+      <Packages packages={props.packages} />
     </Container>
   );
 }

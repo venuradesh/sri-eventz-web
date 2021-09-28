@@ -4,7 +4,6 @@ import styled from "styled-components";
 import About from "./About";
 
 function AboutSection(props) {
-  console.log(props.user);
   return <Container>{<About user={props.user} />}</Container>;
 }
 
