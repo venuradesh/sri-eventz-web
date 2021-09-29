@@ -5,12 +5,14 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { useSelector, useDispatch } from "react-redux";
 import { auth } from "../../firebase";
 import { setUser, unsetUser } from "../../features/UserSlice.js/userSlice";
+import gsap from "gsap";
 
 const Nav = () => {
   const nav_menu = useRef();
   const btn_con = useRef();
   const ul = useRef();
   const profileUl = useRef();
+  const navigation = useRef();
   const profileContainer = useRef();
   const user = useSelector((state) => state);
   const [loginInserted, setLoginInserted] = useState(false);
@@ -19,6 +21,8 @@ const Nav = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    gsap.fromTo(navigation.current, { opacity: 0, y: "-100px" }, { opacity: 1, y: "0px", duration: 1.2 });
+
     auth.onAuthStateChanged((res) => {
       if (res) {
         dispatch(
@@ -100,7 +104,7 @@ const Nav = () => {
   };
 
   return (
-    <Container>
+    <Container ref={navigation}>
       <Link to="/">
         <Logo></Logo>
       </Link>

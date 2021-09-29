@@ -1,11 +1,55 @@
-import React from "react";
+import React, { useRef, useEffect, useMemo } from "react";
 import styled from "styled-components";
+import gsap from "gsap";
 
 export default function AboutSection(props) {
+  const left = useRef();
+  const right = useRef();
+
+  const callBackLeft = (entries) => {
+    if (entries[0].isIntersecting) {
+      gsap.fromTo(left.current, { opacity: 0, x: "-100px" }, { opacity: 1, x: "0px", duration: 1 });
+    } else {
+      gsap.fromTo(left.current, { opacity: 1, x: "0px" }, { opacity: 0, x: "-100px", duration: 0 });
+    }
+  };
+
+  const callBackRight = (entries) => {
+    if (entries[0].isIntersecting) {
+      gsap.fromTo(right.current, { opacity: 0, x: "100px" }, { opacity: 1, x: "0px", duration: 1 });
+      document.querySelectorAll(".inner-bar").forEach((innerbar) => {
+        if (innerbar.classList.contains("pr-completion")) {
+          gsap.fromTo(innerbar, { width: 0 }, { width: props.user.progress.projectCompletion, duration: 2 });
+        } else if (innerbar.classList.contains("response")) {
+          gsap.fromTo(innerbar, { width: 0 }, { width: props.user.progress.responseRate, duration: 2 });
+        } else {
+          gsap.fromTo(innerbar, { width: 0 }, { width: props.user.progress.positiveRating, duration: 2 });
+        }
+      });
+    } else {
+      gsap.fromTo(right.current, { opacity: 1, x: "0px" }, { opacity: 0, x: "100px", duration: 0 });
+    }
+  };
+
+  const options = useMemo(() => {
+    return {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.4,
+    };
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(callBackLeft, options);
+    const observerRight = new IntersectionObserver(callBackRight, options);
+    observer.observe(left.current);
+    observerRight.observe(right.current);
+  }, []);
+
   return (
     <AboutSectionStyles>
       <div className="container">
-        <Left>
+        <Left ref={left}>
           <div className="aboutMe">
             <div className="heading">About me</div>
             <div className="sub-heading">Why hire me for your next Project</div>
@@ -33,7 +77,7 @@ export default function AboutSection(props) {
           </div>
         </Left>
 
-        <Right projectCompletion={props.user.progress.projectCompletion} responseRate={props.user.progress.responseRate} positiveRating={props.user.progress.positiveRating}>
+        <Right ref={right} projectCompletion={props.user.progress.projectCompletion} responseRate={props.user.progress.responseRate} positiveRating={props.user.progress.positiveRating}>
           <div className="Progress">
             <ul>
               <li>
