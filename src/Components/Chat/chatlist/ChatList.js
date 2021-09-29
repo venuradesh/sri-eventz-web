@@ -85,7 +85,7 @@ export default class ChatList extends Component {
   render() {
     return (
       <div className="main-chatlist">
-        <div className="chatlist-heading"></div>
+        {/* <div className="chatlist-heading"></div> */}
         <div className="chatList-search">
           <div className="search-wrap">
             <input type="text" placeholder="Search Here" required />
@@ -96,16 +96,7 @@ export default class ChatList extends Component {
         </div>
         <div className="chatlist-items">
           {this.state.allChats.map((item, index) => {
-            return (
-              <ChatListItems
-                name={item.name}
-                key={item.id}
-                animationDelay={index + 1}
-                active={item.active ? "active" : ""}
-                isOnline={item.isOnline ? "active" : ""}
-                image={item.image}
-              />
-            );
+            return <ChatListItems name={item.name} key={item.id} animationDelay={index + 1} active={item.active ? "active" : ""} isOnline={item.isOnline ? "active" : ""} image={item.image} />;
           })}
         </div>
       </div>
