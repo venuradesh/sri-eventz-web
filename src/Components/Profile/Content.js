@@ -1,17 +1,23 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import gsap from "gsap";
 
 const Content = (props) => {
   const message = useRef();
+  const userCon = useRef();
   const history = useHistory();
+
+  useEffect(() => {
+    gsap.fromTo(userCon.current, { opacity: 0 }, { opacity: 1, duration: 1, delay: 1.2 });
+  }, []);
 
   const onMessageClick = () => {
     history.push(`chat/${props.id}`);
   };
 
   return (
-    <Container>
+    <Container ref={userCon}>
       <div className="display-image">
         <img className="profile-photo" src={props.profileImage}></img>
       </div>
