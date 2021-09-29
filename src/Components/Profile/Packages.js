@@ -1,15 +1,37 @@
-import React from "react";
+import React, { useMemo, useRef, useEffect } from "react";
 import styled from "styled-components";
 import PackageDetails from "./PackageDetails";
+import gsap from "gsap";
 
 export default function Packages(props) {
-  console.log(props.packages);
-  Object.entries(props.packages).map((pack) => {
-    console.log(pack[1].cover);
-  });
+  const packageContainer = useRef();
+
+  const options = useMemo(() => {
+    return {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5,
+    };
+  }, []);
+
+  const callBack = (entries) => {
+    entries.map((entry) => {
+      if (entry.isIntersecting) {
+        gsap.fromTo(packageContainer.current, { opacity: 0 }, { opacity: 1, duration: 1.2 });
+      } else {
+        gsap.fromTo(packageContainer.current, { opacity: 1 }, { opacity: 0 });
+      }
+    });
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(callBack, options);
+
+    observer.observe(packageContainer.current);
+  }, []);
 
   return (
-    <Container>
+    <Container ref={packageContainer}>
       {!props.packages ? (
         ""
       ) : (

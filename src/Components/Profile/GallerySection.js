@@ -1,11 +1,35 @@
-import React from "react";
+import React, { useMemo, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Gallery from "./Gallery";
+import gsap from "gsap";
 
 export default function GallerySection(props) {
-  console.log(props);
+  const conRef = useRef();
+
+  const options = useMemo(() => {
+    return {
+      root: conRef.current,
+      rootMargin: "0px",
+      threshold: 0.3,
+    };
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.map((entry) => {
+        if (entry.isIntersecting) {
+          gsap.fromTo(conRef.current, { opacity: 0 }, { opacity: 1, duration: 1.2 });
+        } else {
+          gsap.fromTo(conRef.current, { opacity: 1 }, { opacity: 0 });
+        }
+      });
+    }, options);
+
+    observer.observe(conRef.current);
+  }, []);
+
   return (
-    <Container>
+    <Container ref={conRef}>
       <div className="section-heading">Recent projects</div>
       <div className="images-container">
         {props.photos.map((photo) => (

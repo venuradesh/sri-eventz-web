@@ -9,7 +9,6 @@ import TestimonialsSection from "./TestimonialsSection";
 import { useParams } from "react-router-dom";
 import db from "../../firebase";
 import { animateScroll as scroll } from "react-scroll";
-import gsap from "gsap";
 
 const UserProfile = () => {
   const params = useParams();
@@ -26,7 +25,6 @@ const UserProfile = () => {
       .get()
       .then((docs) => {
         setUserData(docs.data());
-        console.log(userData);
       });
   }, [params]);
 
