@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import ChatList from "./chatlist/ChatList";
-import ChatContent from "./content/ChatContent";
-import ChatScreen from "./ChatScreen";
 import Header from "./Header";
+import ChatList from "./ChatList";
+import ChattingContainer from "./ChattingContainer";
 
 export default class ChatSection extends Component {
   render() {
@@ -12,8 +11,7 @@ export default class ChatSection extends Component {
         <Header />
         <div className="chat-container">
           <ChatList />
-          <ChatContent />
-          <ChatScreen />
+          <ChattingContainer />
         </div>
       </Container>
     );
@@ -28,5 +26,7 @@ const Container = styled.div`
   .chat-container {
     display: flex;
     width: 100%;
+    min-height: calc(100vh - 6.25rem);
+    background-color: aqua;
   }
 `;

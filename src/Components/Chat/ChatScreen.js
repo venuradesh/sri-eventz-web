@@ -1,63 +1,96 @@
 import React from "react";
 import styled from "styled-components";
+import ChatTile from "./ChatTile";
 
-function ChatScreen() {
-  return <Container></Container>;
-}
+const ChatScreen = () => {
+  const data = [
+    {
+      name: "venura warnasooriya",
+      content: "Hi How are you!, I'm willing to plan my wedding.",
+      date: "9.00am",
+      active: "receiver",
+    },
+    {
+      name: "venura warnasooriya",
+      content: "Hi How are you!, I'm willing to plan my wedding.",
+      date: "9.00am",
+      active: "sender",
+    },
+    {
+      name: "venura warnasooriya",
+      content: "Hi How are you!, I'm willing to plan my wedding.",
+      date: "9.00am",
+      active: "receiver",
+    },
+    {
+      name: "venura warnasooriya",
+      content: "Hi How are you!, I'm willing to plan my wedding.",
+      date: "9.00am",
+      active: "sender",
+    },
+    {
+      name: "venura warnasooriya",
+      content: "Hi How are you!, I'm willing to plan my wedding.",
+      date: "9.00am",
+      active: "receiver",
+    },
+    {
+      name: "venura warnasooriya",
+      content: "Hi How are you!, I'm willing to plan my wedding.",
+      date: "9.00am",
+      active: "sender",
+    },
+    {
+      name: "venura warnasooriya",
+      content: "Hi How are you!, I'm willing to plan my wedding.",
+      date: "9.00am",
+      active: "receiver",
+    },
+    {
+      name: "venura warnasooriya",
+      content: "Hi How are you!, I'm willing to plan my wedding.",
+      date: "9.00am",
+      active: "sender",
+    },
+    {
+      name: "venura warnasooriya",
+      content: "Hi How are you!, I'm willing to plan my wedding.",
+      date: "9.00am",
+      active: "receiver",
+    },
+    {
+      name: "venura warnasooriya",
+      content: "Hi How are you!, I'm willing to plan my wedding.",
+      date: "9.00am",
+      active: "sender",
+    },
+  ];
+
+  return (
+    <Container>
+      {data.map((con) => (
+        <div className="tile">
+          <ChatTile active={con.active} date={con.date} name={con.name} msg={con.content} />
+        </div>
+      ))}
+    </Container>
+  );
+};
 
 export default ChatScreen;
 
 const Container = styled.div`
+  height: calc(100vh - 6.25rem - 5rem - 5rem);
+  width: 100%;
+  background-color: #ffffff;
+  padding: 30px 40px;
+  overflow-y: scroll;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 100px);
-  padding-left: 20px;
+  flex-direction: column;
 
-  .main {
-    max-width: 900vw;
-    margin: auto;
-    background-color: #fff;
-    min-height: 80vh;
-    width: 100%;
-    border-radius: 10px;
-    padding: 20px;
-    display: flex;
-    padding-left: 0;
-  }
-
-  .btn {
-    background-color: #fff;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    width: 230px;
-    height: 47px;
-    line-height: 47px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.02);
-    display: flex;
-    padding: 0;
-    transition: all 0.3s ease-in-out;
-  }
-  .btn:hover {
-    background-color: #4664ff;
-    color: #fff;
-    transform: scale(1.02);
-  }
-  .btn i {
-    flex: 0.2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    font-size: 18px;
-    border-right: 1px solid #ebe7fb;
-  }
-  .btn span {
-    flex: 0.8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .tile {
+    position: relative;
+    width: calc(100vw - 25rem - 5rem);
+    min-height: 80px;
   }
 `;

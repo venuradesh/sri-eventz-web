@@ -174,6 +174,7 @@ const Container = styled.div`
   background-color: #ffffff;
   border-bottom: 1px solid #efefef;
   box-shadow: 0 5px 7px -7px rgba(0, 0, 0, 0.75);
+  z-index: 100;
 `;
 const Logo = styled.div`
   width: 150px;
