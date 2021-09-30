@@ -42,7 +42,8 @@ const Container = styled.div`
   height: calc(100vh - 6.25rem);
   max-height: calc(100vh - 6.25rem);
   overflow-y: auto;
-  background-color: #64495c;
+  background-color: #f2f2f2;
+  border-right: 1px solid #d9d9d9;
 `;
 
 const ProfileContainer = styled.div`
@@ -51,8 +52,8 @@ const ProfileContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   position: sticky;
+  background-color: #f2f2f2;
   top: 0;
-  background-color: #64495c;
 `;
 
 const ImgContainer = styled.div`
@@ -62,6 +63,7 @@ const ImgContainer = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   justify-content: space-between;
+  background-color: #ffffff;
 
   .more-info {
     display: flex;
@@ -86,20 +88,21 @@ const SearchMessage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #f2f2f2;
   position: relative;
-  border-bottom: 1px solid #64495c;
-  border-top: 1px solid #64495c;
+  padding: 0 20px;
+  border-bottom: 1px solid #d9d9d9;
+  border-top: 1px solid #d9d9d9;
 
   input {
     flex: 1;
-    height: 80px;
-    padding: 20px 20px;
+    padding: 10px 20px;
     border: none;
-    // border: 1px solid rgba(100, 73, 92, 0.5);
-    background-color: #412542;
     font-size: 1.2rem;
     outline: none;
     color: #ffffff;
+    background-color: #ffffff;
+    border-radius: 50px;
 
     &::placeholder {
       color: #64495c;

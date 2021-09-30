@@ -20,16 +20,16 @@ export default SingleChatItem;
 const Container = styled.div`
   height: 80px;
   width: 100%;
-  background-color: #412542;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   padding: 0 20px;
-  border-bottom: 1px solid #412542;
+  border-bottom: 1px solid #f2f2f2;
   cursor: pointer;
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: #64495c;
+    background-color: #d9d9d9;
   }
 
   .profile-photo {
@@ -56,14 +56,14 @@ const Container = styled.div`
       text-transform: uppercase;
       overflow: hidden;
       margin-bottom: 3px;
-      color: #ffffff;
+      color: #412542;
 
       &:last-of-type {
         font-size: 0.6rem;
         text-transform: lowercase;
         white-space: nowrap;
-        color: rgba(255, 255, 255, 0.5);
-        font-weight: 500;
+        color: #412542;
+        font-weight: 100;
       }
     }
   }
