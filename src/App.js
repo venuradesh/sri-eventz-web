@@ -32,7 +32,7 @@ function App() {
           <Router exact path="/login">
             <Login />
           </Router>
-          <Router exact path="/chat">
+          <Router exact path="/chat/:id">
             <ChatSection />
           </Router>
         </Switch>

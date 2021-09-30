@@ -5,12 +5,14 @@ import gsap from "gsap";
 import { googleProvider, auth } from "../../firebase";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../features/UserSlice.js/userSlice";
+import db from "../../firebase";
 
 const Login = () => {
   const dispatch = useDispatch();
   const wrapper = useRef();
   const login = useRef();
   const history = useHistory();
+  const googleUser = db.collection("GoogleAccounts");
 
   const onGoogleAuth = () => {
     auth.signInWithPopup(googleProvider).then((result) => {
@@ -19,8 +21,19 @@ const Login = () => {
           name: result.user.displayName,
           email: result.user.email,
           profilePhoto: result.user.photoURL,
+          dbId: result.user.email,
         })
       );
+      googleUser.doc(result.user.email).onSnapshot((snap) => {
+        if (!snap.exists) {
+          googleUser.doc(result.user.email).set({
+            name: result.user.displayName,
+            email: result.user.email,
+            profilePhoto: result.user.displayName,
+          });
+        }
+      });
+
       history.push("/");
       window.location.reload();
     });

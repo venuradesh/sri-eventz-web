@@ -10,9 +10,12 @@ import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlin
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import gsap from "gsap";
+import { useSelector } from "react-redux";
 
 function Post(props) {
   const post = useRef();
+  const userState = useSelector((state) => state.user.user.name);
+  const msg = useRef();
 
   let settings = {
     dots: true,
@@ -28,6 +31,13 @@ function Post(props) {
   useEffect(() => {
     gsap.fromTo(post.current, { opacity: 0, y: 100 }, { opacity: 1, y: 0, duration: 1 });
   }, []);
+
+  const onMessageClick = (e) => {
+    if (!userState) {
+      e.preventDefault();
+      window.alert("You Have to Login to use SriChat");
+    }
+  };
 
   return (
     <Container className="fade" ref={post}>
@@ -67,7 +77,7 @@ function Post(props) {
             <Link to={`/profile/${props.id}`} className="profile-visit">
               Visit Profile
             </Link>
-            <Link to={`/msg/${props.id}`} className="message">
+            <Link to={`/chat/${props.id}`} className="message" ref={msg} onClick={(e) => onMessageClick(e)}>
               Messege
             </Link>
           </div>
