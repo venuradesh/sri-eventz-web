@@ -1,12 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import SendIcon from "@mui/icons-material/Send";
+import { useSelector } from "react-redux";
 
 const ChatInput = () => {
+  const user = useSelector((state) => state.user.user);
+
   return (
     <Container>
       <div className="profile-pic">
-        <img src="/images/profile-photo-1.jpg" />
+        <img src={user.profilePhoto} />
       </div>
       <div className="msg-input">
         <input type="text" placeholder="Message" />

@@ -1,25 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ChatScreen from "./ChatScreen";
 import ChatInput from "./ChatInput";
+import db from "../../firebase";
+import { useParams } from "react-router";
 
-const ChattingContainer = () => {
+const ChattingContainer = (props) => {
+  const userDB = db.collection("user");
+  const [userOfChat, setUserOfChat] = useState([]);
+  const params = useParams();
+
+  useEffect(() => {
+    setUserOfChat([]);
+    userDB.doc(params.id).onSnapshot((snap) => {
+      setUserOfChat((old) => [...old, { id: snap.id, details: snap.data() }]);
+    });
+  }, []);
+
   return (
     <Container>
-      <ProfileContainer>
-        <div className="profile">
-          <div className="profile-pic">
-            <img src="/images/profile-photo-1.jpg" />
-          </div>
-          <div className="name">Venura Warnasooriya</div>
-        </div>
-        <div className="more-info">
-          <MoreVertIcon className="more-info-icon" />
-        </div>
-      </ProfileContainer>
-      <ChatScreen />
-      <ChatInput />
+      {userOfChat.map((detail) => (
+        <>
+          <ProfileContainer>
+            <div className="profile">
+              <div className="profile-pic">
+                <img src={detail.details.profileImage} />
+              </div>
+              <div className="name">{detail.details.name}</div>
+            </div>
+            <div className="more-info">
+              <MoreVertIcon className="more-info-icon" />
+            </div>
+          </ProfileContainer>
+          <ChatScreen chat={props.messages} userName={detail.details.name} />
+          <ChatInput />
+        </>
+      ))}
     </Container>
   );
 };

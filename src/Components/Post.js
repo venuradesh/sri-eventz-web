@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Slider from "react-slick";
 import moment from "moment";
 import "slick-carousel/slick/slick.css";
@@ -16,6 +16,7 @@ function Post(props) {
   const post = useRef();
   const userState = useSelector((state) => state.user.user.name);
   const msg = useRef();
+  const history = useHistory();
 
   let settings = {
     dots: true,
@@ -33,9 +34,12 @@ function Post(props) {
   }, []);
 
   const onMessageClick = (e) => {
+    e.preventDefault();
     if (!userState) {
-      e.preventDefault();
       window.alert("You Have to Login to use SriChat");
+    } else {
+      history.push(`/chat/${props.id}`);
+      window.location.reload();
     }
   };
 

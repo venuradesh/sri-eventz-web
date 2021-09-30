@@ -1,78 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import ChatTile from "./ChatTile";
+import { useSelector } from "react-redux";
 
-const ChatScreen = () => {
-  const data = [
-    {
-      name: "venura warnasooriya",
-      content: "Hi How are you!, I'm willing to plan my wedding.",
-      date: "9.00am",
-      active: "receiver",
-    },
-    {
-      name: "venura warnasooriya",
-      content: "Hi How are you!, I'm willing to plan my wedding.",
-      date: "9.00am",
-      active: "sender",
-    },
-    {
-      name: "venura warnasooriya",
-      content: "Hi How are you!, I'm willing to plan my wedding.",
-      date: "9.00am",
-      active: "receiver",
-    },
-    {
-      name: "venura warnasooriya",
-      content: "Hi How are you!, I'm willing to plan my wedding.",
-      date: "9.00am",
-      active: "sender",
-    },
-    {
-      name: "venura warnasooriya",
-      content: "Hi How are you!, I'm willing to plan my wedding.",
-      date: "9.00am",
-      active: "receiver",
-    },
-    {
-      name: "venura warnasooriya",
-      content: "Hi How are you!, I'm willing to plan my wedding.",
-      date: "9.00am",
-      active: "sender",
-    },
-    {
-      name: "venura warnasooriya",
-      content: "Hi How are you!, I'm willing to plan my wedding.",
-      date: "9.00am",
-      active: "receiver",
-    },
-    {
-      name: "venura warnasooriya",
-      content: "Hi How are you!, I'm willing to plan my wedding.",
-      date: "9.00am",
-      active: "sender",
-    },
-    {
-      name: "venura warnasooriya",
-      content: "Hi How are you!, I'm willing to plan my wedding.",
-      date: "9.00am",
-      active: "receiver",
-    },
-    {
-      name: "venura warnasooriya",
-      content: "Hi How are you!, I'm willing to plan my wedding.",
-      date: "9.00am",
-      active: "sender",
-    },
-  ];
+const ChatScreen = (props) => {
+  const user = useSelector((state) => state.user.user.name);
 
   return (
     <Container>
-      {data.map((con) => (
-        <div className="tile">
-          <ChatTile active={con.active} date={con.date} name={con.name} msg={con.content} />
-        </div>
-      ))}
+      {props.chat.map((chat) =>
+        chat.content.messages.map((msg) => (
+          <div className="tile">
+            <ChatTile active={msg.position} time={msg.timestamp} name={msg.position === "receiver" ? props.userName : user} msg={msg.content} />
+          </div>
+        ))
+      )}
     </Container>
   );
 };

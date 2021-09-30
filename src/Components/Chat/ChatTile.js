@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import moment from "moment";
 
 const ChatTile = (props) => {
   return (
@@ -11,7 +12,7 @@ const ChatTile = (props) => {
         <div className="msg">{props.msg}</div>
       </div>
       <div className="date">
-        <span>{props.date}</span>
+        <span>{moment(props.time.toDate().toString()).format("h:mm a")}</span>
       </div>
     </Container>
   );

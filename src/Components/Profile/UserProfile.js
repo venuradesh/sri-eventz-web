@@ -15,6 +15,7 @@ const UserProfile = () => {
   const profileCon = useRef();
   const userDB = db.collection("user");
   const [userData, setUserData] = useState(null);
+  console.log(params.id);
 
   useEffect(() => {
     scroll.scrollTo(0);

@@ -7,8 +7,8 @@ import Background from "./Components/Background";
 import Feed from "./Components/Feed";
 import Footer from "./Components/Footer";
 import Login from "./Components/Login/Login";
-import ChatSection from "./Components/Chat/ChatSection";
 import UserProfile from "./Components/Profile/UserProfile";
+import ChatSection from "./Components/Chat/ChatSection";
 
 function App() {
   return (
@@ -29,12 +29,12 @@ function App() {
               <UserProfile />
             </div>
           </Route>
-          <Router exact path="/login">
+          <Route exact path="/login">
             <Login />
-          </Router>
-          <Router exact path="/chat/:id">
+          </Route>
+          <Route exact path="/chat/:id">
             <ChatSection />
-          </Router>
+          </Route>
         </Switch>
       </div>
     </Router>
