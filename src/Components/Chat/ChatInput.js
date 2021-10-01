@@ -20,14 +20,6 @@ const ChatInput = () => {
       sriChat.onSnapshot((snap) => {
         if (!snap.exists) {
           setAlreadyIn(false);
-          //     // sriChat.update({
-          //     //   messages: firebase.firestore.FieldValue.arrayUnion({
-          //     //     content: msg,
-          //     //     timestamp: firebase.firestore.Timestamp.now(),
-          //     //     position: "sender",
-          //     //   }),
-          //     });
-          //   } else {
         }
       });
 

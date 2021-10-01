@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import moment from "moment";
+import gsap from "gsap";
 
 const ChatTile = (props) => {
+  const tiles = useRef();
+
+  useEffect(() => {
+    gsap.fromTo(tiles.current, { opacity: 0, y: "50px" }, { opacity: 1, y: "0px", duration: 1 });
+  }, []);
+
   return (
-    <Container className={props.active}>
+    <Container className={props.active} ref={tiles}>
       <div className="header">
         <div className="name">{props.name}</div>
       </div>

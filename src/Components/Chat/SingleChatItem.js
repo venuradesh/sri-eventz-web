@@ -1,16 +1,51 @@
-import React from "react";
+import React, { useRef, useState, useMemo, useEffect } from "react";
+import gsap from "gsap";
 import styled from "styled-components";
+import { EventRounded } from "@mui/icons-material";
 
 const SingleChatItem = (props) => {
+  const chatItem = useRef();
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const options = useMemo(() => {
+    return {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.8,
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isIntersecting) {
+      gsap.fromTo(chatItem.current, { opacity: 0 }, { opacity: 1, duration: 0.7, delay: props.index + 0.2 });
+    }
+    const obeserver = new IntersectionObserver((entries) => {
+      entries.map((entry) => {
+        if (entry.isIntersecting) {
+          setIsIntersecting(true);
+        }
+      });
+    }, options);
+
+    obeserver.observe(chatItem.current);
+  }, [isIntersecting]);
+
   return (
-    <Container>
-      <div className="profile-photo">
-        <img src={props.img} />
-      </div>
-      <div className="name-container">
-        <span>{props.name}</span>
-        <span>{props.lastMsg}</span>
-      </div>
+    <Container ref={chatItem}>
+      {isIntersecting === true ? (
+        <>
+          <div className="profile-photo">
+            <img src={props.img} />
+          </div>
+          <div className="name-container">
+            <span>{props.name}</span>
+            <span>{props.lastMsg}</span>
+          </div>
+        </>
+      ) : (
+        <>
+          <p>loading</p>
+        </>
+      )}
     </Container>
   );
 };
@@ -27,6 +62,14 @@ const Container = styled.div`
   border-bottom: 1px solid #f2f2f2;
   cursor: pointer;
   transition: all 0.3s ease;
+
+  &.within {
+    display: flex;
+  }
+
+  &.without {
+    display: none;
+  }
 
   &:hover {
     background-color: #d9d9d9;
