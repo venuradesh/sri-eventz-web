@@ -2,18 +2,26 @@ import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import gsap from "gsap";
+import { useSelector } from "react-redux";
 
 const Content = (props) => {
   const message = useRef();
   const userCon = useRef();
   const history = useHistory();
+  const userName = useSelector((state) => state.user.user.name);
+  console.log(userName);
 
   useEffect(() => {
     gsap.fromTo(userCon.current, { opacity: 0 }, { opacity: 1, duration: 1, delay: 1.2 });
   }, []);
 
-  const onMessageClick = () => {
-    history.push(`/chat/${props.id}`);
+  const onMessageClick = (e) => {
+    e.preventDefault();
+    if (!userName) {
+      window.alert("To use SriChat you need to login");
+    } else {
+      history.push(`/chat/${props.id}`);
+    }
   };
 
   return (
@@ -27,7 +35,7 @@ const Content = (props) => {
 
       <div className="dis">{props.description}</div>
       <div className="btn-container">
-        <div className="message" ref={message} onClick={() => onMessageClick()}>
+        <div className="message" ref={message} onClick={(e) => onMessageClick(e)}>
           Message me
         </div>
         <a href={`tel:+94${props.telephone},1`} className="call">
