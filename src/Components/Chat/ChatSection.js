@@ -16,32 +16,37 @@ const ChatSection = () => {
   const [newChat, setNewChat] = useState(false);
   const [userPr, setUserPr] = useState();
   const vendorId = useParams().id;
+  const [alreadyRendered, setAlreadyRendered] = useState(false);
   const googleAccounts = db.collection("GoogleAccounts");
 
-  useMemo(() => {
-    auth.onAuthStateChanged((res) => {
-      setUserPr();
-      dispatch(
-        setUser({
+  const authSelect = () => {
+    if (!alreadyRendered) {
+      auth.onAuthStateChanged((res) => {
+        setUserPr();
+        dispatch(
+          setUser({
+            name: res.displayName,
+            email: res.email,
+            profilePhoto: res.photoURL,
+          })
+        );
+        setUserPr({
           name: res.displayName,
           email: res.email,
           profilePhoto: res.photoURL,
-        })
-      );
-      setUserPr({
-        name: res.displayName,
-        email: res.email,
-        profilePhoto: res.photoURL,
+        });
       });
-    });
-  }, []);
+    }
+  };
 
   const takeMessages = ({ message, id }) => {
-    setMessages((old) => [...old, { content: message, id: id }]);
+    setMessages([...messages, { content: message, id: id }]);
+    // setMessages((old) => [...old, {  }]);
   };
 
   const makeUserList = ({ id: id }) => {
-    setUserList((old) => [...old, id]);
+    setUserList([...userList, id]);
+    // setUserList((old) => [...old, id]);
   };
 
   const createSriChat = (email) => {
@@ -51,14 +56,15 @@ const ChatSection = () => {
     setNewChat(true);
   };
 
-  useEffect(() => {
-    setUserList([]);
-    setMessages([]);
-    if (userPr) {
+  const mainDBFunc = () => {
+    if (!alreadyRendered) {
+      setUserList([]);
+      setMessages([]);
       googleAccounts
         .doc(userPr.email)
         .collection("sriChat")
         .onSnapshot((snap) => {
+          console.log("within");
           if (snap.docs[0]) {
             snap.docs.map((doc) => {
               if (doc.exists) {
@@ -72,8 +78,16 @@ const ChatSection = () => {
             createSriChat(userPr.email);
           }
         });
+      setAlreadyRendered(true);
     }
-  }, [userPr, newChat]);
+  };
+
+  useEffect(() => {
+    authSelect();
+    if (userPr && !alreadyRendered) {
+      mainDBFunc();
+    }
+  }, [userPr]);
 
   return (
     <Container>

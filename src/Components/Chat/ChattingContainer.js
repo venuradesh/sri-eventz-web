@@ -33,7 +33,7 @@ const ChattingContainer = (props) => {
               <MoreVertIcon className="more-info-icon" />
             </div>
           </ProfileContainer>
-          <ChatScreen chat={props.messages} userName={detail.details.name} />
+          <ChatScreen chat={props.messages} userName={detail.details.name} photo={detail.details.profileImage} />
           <ChatInput />
         </>
       ))}
