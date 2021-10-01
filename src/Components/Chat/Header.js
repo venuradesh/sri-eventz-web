@@ -21,7 +21,7 @@ const Header = () => {
   const headerContainer = useRef(null);
 
   useEffect(() => {
-    gsap.fromTo(headerContainer.current, { opacity: 0, y: "-100px" }, { opacity: 1.3, duration: 1, delay: 0.7, y: 0 });
+    // gsap.fromTo(headerContainer.current, { opacity: 0, y: "-100px" }, { opacity: 1.3, duration: 1, delay: 0.7, y: 0 });
 
     auth.onAuthStateChanged(async (user) => {
       if (user) {

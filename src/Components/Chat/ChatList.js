@@ -1,12 +1,15 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SearchIcon from "@mui/icons-material/Search";
 import SingleChatItem from "./SingleChatItem";
 import { useSelector } from "react-redux";
 import db from "../../firebase";
+import gsap from "gsap";
 
 const ChatList = (props) => {
+  const chatItemSection = useRef();
+  const profileCon = useRef();
   const user = useSelector((state) => state.user.user);
   const [userDetails, setUserDetails] = useState([]);
   const userDB = db.collection("user");
@@ -21,8 +24,8 @@ const ChatList = (props) => {
   }, [props.userList]);
 
   return (
-    <Container>
-      <ProfileContainer>
+    <Container ref={chatItemSection}>
+      <ProfileContainer ref={profileCon}>
         <ImgContainer>
           <img src={user.profilePhoto} alt={user.name} />
           <div className="more-info">
@@ -34,7 +37,7 @@ const ChatList = (props) => {
           <SearchIcon className="search-icon" />
         </SearchMessage>
       </ProfileContainer>
-      <ChatListContainer>{userDetails && userDetails.map((detail) => <SingleChatItem name={detail.details.name} img={detail.details.profileImage} lastMsg="" />)}</ChatListContainer>
+      <ChatListContainer>{userDetails && userDetails.map((detail, index) => <SingleChatItem name={detail.details.name} img={detail.details.profileImage} index={index} lastMsg="" />)}</ChatListContainer>
     </Container>
   );
 };

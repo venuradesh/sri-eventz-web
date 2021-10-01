@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import ChatList from "./ChatList";
@@ -41,12 +41,10 @@ const ChatSection = () => {
 
   const takeMessages = ({ message, id }) => {
     setMessages([...messages, { content: message, id: id }]);
-    // setMessages((old) => [...old, {  }]);
   };
 
   const makeUserList = ({ id: id }) => {
     setUserList([...userList, id]);
-    // setUserList((old) => [...old, id]);
   };
 
   const createSriChat = (email) => {
@@ -64,7 +62,6 @@ const ChatSection = () => {
         .doc(userPr.email)
         .collection("sriChat")
         .onSnapshot((snap) => {
-          console.log("within");
           if (snap.docs[0]) {
             snap.docs.map((doc) => {
               if (doc.exists) {
@@ -111,6 +108,5 @@ const Container = styled.div`
     display: flex;
     width: 100%;
     min-height: calc(100vh - 6.25rem);
-    background-color: aqua;
   }
 `;
