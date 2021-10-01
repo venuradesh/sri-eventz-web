@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import moment from "moment";
 
 const ChatTile = (props) => {
   return (
@@ -11,7 +12,7 @@ const ChatTile = (props) => {
         <div className="msg">{props.msg}</div>
       </div>
       <div className="date">
-        <span>{props.date}</span>
+        <span>{moment(props.time.toDate().toString()).format("h:mm a")}</span>
       </div>
     </Container>
   );
@@ -21,6 +22,7 @@ export default ChatTile;
 
 const Container = styled.div`
   max-width: 500px;
+  min-width: 200px;
   width: max-content;
   position: absolute;
   border-radius: 12px;
@@ -33,7 +35,7 @@ const Container = styled.div`
 
     .name {
       position: absolute;
-      top: -25px;
+      top: -28px;
       left: 10px;
       font-size: 0.7rem;
     }
@@ -56,7 +58,7 @@ const Container = styled.div`
 
     .name {
       position: absolute;
-      top: -25px;
+      top: -28px;
       right: 10px;
       font-size: 0.7rem;
     }
@@ -76,7 +78,7 @@ const Container = styled.div`
     position: relative;
 
     .name {
-      color: #412542;
+      color: rgba(65, 37, 66, 0.6);
       font-weight: 600;
     }
   }

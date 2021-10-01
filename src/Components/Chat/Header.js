@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import gsap from "gsap";
 import { useDispatch } from "react-redux";
@@ -8,6 +8,7 @@ import { auth } from "../../firebase";
 import { setUser, unsetUser } from "../../features/UserSlice.js/userSlice";
 
 const Header = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const nav_menu = useRef();
   const btn_con = useRef();
@@ -100,7 +101,9 @@ const Header = () => {
     });
   };
 
-  const reloadWindow = () => {
+  const reloadWindow = (e) => {
+    e.preventDefault();
+    history.push("/");
     window.location.reload();
   };
 
@@ -112,7 +115,7 @@ const Header = () => {
       <Navigation ref={nav_menu}>
         <ul ref={ul}>
           <li>
-            <Link to="/" onClick={() => reloadWindow()}>
+            <Link to="/" onClick={(e) => reloadWindow(e)}>
               Home
             </Link>
           </li>

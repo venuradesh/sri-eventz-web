@@ -1,17 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import SendIcon from "@mui/icons-material/Send";
+import { useSelector } from "react-redux";
+import db from "../../firebase";
+import firebase from "firebase";
+import { useParams } from "react-router";
 
 const ChatInput = () => {
+  const user = useSelector((state) => state.user.user);
+  const [alreadyIn, setAlreadyIn] = useState(true);
+  const params = useParams();
+
+  const Send = () => {
+    const msg = document.getElementById("msg-input").value;
+    document.getElementById("msg-input").value = "";
+    const email = user.email;
+    const sriChat = db.collection("GoogleAccounts").doc(email).collection("sriChat").doc(params.id);
+    if (sriChat)
+      sriChat.onSnapshot((snap) => {
+        if (!snap.exists) {
+          setAlreadyIn(false);
+          //     // sriChat.update({
+          //     //   messages: firebase.firestore.FieldValue.arrayUnion({
+          //     //     content: msg,
+          //     //     timestamp: firebase.firestore.Timestamp.now(),
+          //     //     position: "sender",
+          //     //   }),
+          //     });
+          //   } else {
+        }
+      });
+
+    if (alreadyIn) {
+      sriChat.update({
+        messages: firebase.firestore.FieldValue.arrayUnion({
+          content: msg,
+          timestamp: firebase.firestore.Timestamp.now(),
+          position: "sender",
+        }),
+      });
+    } else {
+      sriChat.set({
+        messages: [
+          {
+            content: msg,
+            timestamp: firebase.firestore.Timestamp.now(),
+            position: "sender",
+          },
+        ],
+      });
+    }
+  };
+
+  const OnMessageType = (e) => {
+    if (e.keyCode === 13) {
+      Send();
+    }
+  };
+
   return (
     <Container>
       <div className="profile-pic">
-        <img src="/images/profile-photo-1.jpg" />
+        <img src={user.profilePhoto} />
       </div>
       <div className="msg-input">
-        <input type="text" placeholder="Message" />
+        <input type="text" placeholder="Message" id="msg-input" onKeyUp={(e) => OnMessageType(e)} />
       </div>
-      <div className="send">
+      <div className="send" onClick={() => Send()}>
         <SendIcon className="send-icon" />
       </div>
     </Container>

@@ -13,7 +13,7 @@ const Content = (props) => {
   }, []);
 
   const onMessageClick = () => {
-    history.push(`chat/${props.id}`);
+    history.push(`/chat/${props.id}`);
   };
 
   return (

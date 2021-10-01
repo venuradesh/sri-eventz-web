@@ -1,15 +1,30 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import SearchIcon from "@mui/icons-material/Search";
 import SingleChatItem from "./SingleChatItem";
+import { useSelector } from "react-redux";
+import db from "../../firebase";
 
-const ChatList = () => {
+const ChatList = (props) => {
+  const user = useSelector((state) => state.user.user);
+  const [userDetails, setUserDetails] = useState([]);
+  const userDB = db.collection("user");
+
+  useEffect(() => {
+    setUserDetails([]);
+    props.userList.map((user) => {
+      userDB.doc(user).onSnapshot((snap) => {
+        setUserDetails((old) => [...old, { id: snap.id, details: snap.data() }]);
+      });
+    });
+  }, [props.userList]);
+
   return (
     <Container>
       <ProfileContainer>
         <ImgContainer>
-          <img src="/images/profile-photo-1.jpg" alt="" />
+          <img src={user.profilePhoto} alt={user.name} />
           <div className="more-info">
             <MoreVertIcon className="more-info-icon" />
           </div>
@@ -19,18 +34,7 @@ const ChatList = () => {
           <SearchIcon className="search-icon" />
         </SearchMessage>
       </ProfileContainer>
-      <ChatListContainer>
-        <SingleChatItem name="venura Warnasooriya" img="/images/profile-photo-1.jpg" lastMsg="I need to but this so damn.. this is soo good. i need this badly. can you do it for me" />
-        <SingleChatItem name="venura Warnasooriya" img="/images/profile-photo-1.jpg" lastMsg="I need to but this so damn.. this is soo good. i need this badly. can you do it for me" />
-        <SingleChatItem name="venura Warnasooriya" img="/images/profile-photo-1.jpg" lastMsg="I need to but this so damn.. this is soo good. i need this badly. can you do it for me" />
-        <SingleChatItem name="venura Warnasooriya" img="/images/profile-photo-1.jpg" lastMsg="I need to but this so damn.. this is soo good. i need this badly. can you do it for me" />
-        <SingleChatItem name="venura Warnasooriya" img="/images/profile-photo-1.jpg" lastMsg="I need to but this so damn.. this is soo good. i need this badly. can you do it for me" />
-        <SingleChatItem name="venura Warnasooriya" img="/images/profile-photo-1.jpg" lastMsg="I need to but this so damn.. this is soo good. i need this badly. can you do it for me" />
-        <SingleChatItem name="venura Warnasooriya" img="/images/profile-photo-1.jpg" lastMsg="I need to but this so damn.. this is soo good. i need this badly. can you do it for me" />
-        <SingleChatItem name="venura Warnasooriya" img="/images/profile-photo-1.jpg" lastMsg="I need to but this so damn.. this is soo good. i need this badly. can you do it for me" />
-        <SingleChatItem name="venura Warnasooriya" img="/images/profile-photo-1.jpg" lastMsg="I need to but this so damn.. this is soo good. i need this badly. can you do it for me" />
-        <SingleChatItem name="venura Warnasooriya" img="/images/profile-photo-1.jpg" lastMsg="I need to but this so damn.. this is soo good. i need this badly. can you do it for me" />
-      </ChatListContainer>
+      <ChatListContainer>{userDetails && userDetails.map((detail) => <SingleChatItem name={detail.details.name} img={detail.details.profileImage} lastMsg="" />)}</ChatListContainer>
     </Container>
   );
 };

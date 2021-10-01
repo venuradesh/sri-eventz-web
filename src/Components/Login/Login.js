@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import gsap from "gsap";
@@ -32,10 +32,10 @@ const Login = () => {
             profilePhoto: result.user.displayName,
           });
         }
+        console.log(snap.exists);
       });
 
       history.push("/");
-      window.location.reload();
     });
   };
 
