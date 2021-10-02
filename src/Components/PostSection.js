@@ -86,6 +86,7 @@ function PostSection() {
         .orderBy("dateTime", "desc")
         .onSnapshot((snap) => {
           snap.docs.map((doc) => {
+            console.log(doc.data());
             let userId = doc.data().user.id;
             userDB.doc(userId).onSnapshot((userSnap) => {
               const userDetails = userSnap.data();
