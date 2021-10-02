@@ -32,7 +32,6 @@ function PostSection() {
         .where("keywords", "array-contains", keyword)
         .orderBy("dateTime", "desc")
         .onSnapshot((snap) => {
-          console.log("within");
           snap.docs.map((doc) => {
             let userId = doc.data().user.id;
             userDB.doc(userId).onSnapshot((userSnap) => {
@@ -68,7 +67,6 @@ function PostSection() {
           if (res) {
             console.log("within");
             setPostsContents((old) => [...old, { id: doc.id, content: doc.data(), user: res }]);
-            console.log(postsContents);
           }
         });
       });
@@ -86,7 +84,6 @@ function PostSection() {
         .orderBy("dateTime", "desc")
         .onSnapshot((snap) => {
           snap.docs.map((doc) => {
-            console.log(doc.data());
             let userId = doc.data().user.id;
             userDB.doc(userId).onSnapshot((userSnap) => {
               const userDetails = userSnap.data();
