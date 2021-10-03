@@ -9,7 +9,6 @@ const Content = (props) => {
   const userCon = useRef();
   const history = useHistory();
   const userName = useSelector((state) => state.user.user.name);
-  console.log(userName);
 
   useEffect(() => {
     gsap.fromTo(userCon.current, { opacity: 0 }, { opacity: 1, duration: 1, delay: 1.2 });
